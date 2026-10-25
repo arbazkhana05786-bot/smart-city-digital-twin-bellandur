@@ -1948,33 +1948,17 @@ else:
             layers = []
 
             # ─────────────────────────────────────────────────────────────
-            # LAYER 0a — Satellite Imagery Basemap (ESRI World Imagery)
-            # High-resolution satellite raster tiles fetched directly by the browser.
-            # Zero token required — ESRI ArcGIS Online tiles are openly accessible.
+            # LAYER 0 — Satellite Hybrid Basemap (Google Hybrid TileLayer)
+            # Ultra-crisp hybrid satellite raster tiles with embedded street labels.
+            # Zero token required. Disables default grey CARTO canvas.
             # ─────────────────────────────────────────────────────────────
             layers.append(pdk.Layer(
                 "TileLayer",
-                id="satellite-basemap",
-                data="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                id="hybrid-satellite-tiles",
+                data="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
                 min_zoom=0,
-                max_zoom=19,
+                max_zoom=20,
                 tile_size=256,
-                opacity=1.0,
-                coordinate_system=pdk.CoordinateSystem.LNGLAT,
-            ))
-
-            # ─────────────────────────────────────────────────────────────
-            # LAYER 0b — Road Labels & Place Names Overlay (ESRI World Boundaries)
-            # Semi-transparent overlay with street names and administrative labels
-            # ─────────────────────────────────────────────────────────────
-            layers.append(pdk.Layer(
-                "TileLayer",
-                id="satellite-labels",
-                data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
-                min_zoom=0,
-                max_zoom=19,
-                tile_size=256,
-                opacity=0.85,
                 coordinate_system=pdk.CoordinateSystem.LNGLAT,
             ))
 
@@ -2197,7 +2181,8 @@ else:
                     id="human-recalc-bypass-casing",
                     get_path="path",
                     get_color="color",
-                    width_min_pixels=13,
+                    get_width=9,
+                    width_min_pixels=9,
                     pickable=False,
                     rounded=True
                 ))
@@ -2216,7 +2201,8 @@ else:
                     id="human-recalc-bypass",
                     get_path="path",
                     get_color="color",
-                    width_min_pixels=9,
+                    get_width=6,
+                    width_min_pixels=6,
                     pickable=True,
                     rounded=True
                 ))
@@ -2356,7 +2342,8 @@ else:
                         id="ems-flyover-bypass-casing",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=11,
+                        get_width=9,
+                        width_min_pixels=9,
                         pickable=False,
                         rounded=True
                     ))
@@ -2375,7 +2362,8 @@ else:
                         id="ems-flyover-bypass",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=7,
+                        get_width=6,
+                        width_min_pixels=6,
                         pickable=True,
                         rounded=True
                     ))
@@ -2528,7 +2516,8 @@ else:
                         id="fire-recalc-corridor-casing",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=12,
+                        get_width=9,
+                        width_min_pixels=9,
                         pickable=False,
                         rounded=True
                     ))
@@ -2546,7 +2535,8 @@ else:
                         id="fire-recalc-corridor",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=8,
+                        get_width=6,
+                        width_min_pixels=6,
                         pickable=True,
                         rounded=True
                     ))
@@ -2780,7 +2770,8 @@ else:
                             id="quake-perimeter-evac-route-casing",
                             get_path="path",
                             get_color="color",
-                            width_min_pixels=14,
+                            get_width=9,
+                            width_min_pixels=9,
                             pickable=False,
                             rounded=True
                         ))
@@ -2798,7 +2789,8 @@ else:
                             id="quake-perimeter-evac-route",
                             get_path="path",
                             get_color="color",
-                            width_min_pixels=10,
+                            get_width=6,
+                            width_min_pixels=6,
                             pickable=True,
                             rounded=True
                         ))
@@ -2869,7 +2861,8 @@ else:
                         id="action-plan-ems-corridor-casing",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=14,
+                        get_width=9,
+                        width_min_pixels=9,
                         pickable=False,
                         rounded=True
                     ))
@@ -2887,7 +2880,8 @@ else:
                         id="action-plan-ems-corridor",
                         get_path="path",
                         get_color="color",
-                        width_min_pixels=10,
+                        get_width=6,
+                        width_min_pixels=6,
                         pickable=True,
                         rounded=True
                     ))

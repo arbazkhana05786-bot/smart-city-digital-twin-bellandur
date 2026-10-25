@@ -192,65 +192,46 @@ def extract_route_coordinates(G: nx.Graph, path: List[str]) -> List[List[float]]
         if not isinstance(edge_data, dict):
             edge_data = {}
 
-        if "geometry" in edge_data and hasattr(edge_data["geometry"], "xy"):
-            # Extract all curve points along the road
+        u_node = G.nodes.get(u, {})
+        v_node = G.nodes.get(v, {})
+        u_x = float(u_node.get("x", u_node.get("lon", 77.67)))
+        u_y = float(u_node.get("y", u_node.get("lat", 12.92)))
+        v_x = float(v_node.get("x", v_node.get("lon", 77.68)))
+        v_y = float(v_node.get("y", v_node.get("lat", 12.92)))
+
+        edge_pts: List[List[float]] = []
+        if "geometry" in edge_data and hasattr(edge_data["geometry"], "coords"):
+            # Extract all coordinate pairs from Shapely LineString coords
+            edge_pts = [[float(c[0]), float(c[1])] for c in list(edge_data["geometry"].coords)]
+        elif "geometry" in edge_data and hasattr(edge_data["geometry"], "xy"):
             xs, ys = edge_data["geometry"].xy
             edge_pts = [[float(x), float(y)] for x, y in zip(xs, ys)]
-            u_node = G.nodes.get(u, {})
-            u_x = float(u_node.get("x", u_node.get("lon", edge_pts[0][0])))
-            u_y = float(u_node.get("y", u_node.get("lat", edge_pts[0][1])))
-            if len(edge_pts) >= 2:
-                d_start = (edge_pts[0][0] - u_x) ** 2 + (edge_pts[0][1] - u_y) ** 2
-                d_end = (edge_pts[-1][0] - u_x) ** 2 + (edge_pts[-1][1] - u_y) ** 2
-                if d_end < d_start:
-                    edge_pts = list(reversed(edge_pts))
-            for pt in edge_pts:
-                if not route_coords or route_coords[-1] != pt:
-                    route_coords.append(pt)
-        elif "coordinates" in edge_data or "path_coords" in edge_data:
-            raw_pc = edge_data.get("coordinates") if "coordinates" in edge_data else edge_data.get("path_coords")
-            if isinstance(raw_pc, str):
-                import json as _json
-                try:
-                    raw_pc = _json.loads(raw_pc)
-                except Exception:
-                    raw_pc = None
-            if isinstance(raw_pc, list) and len(raw_pc) > 0:
-                edge_pts = [[float(p[0]), float(p[1])] for p in raw_pc]
-                u_node = G.nodes.get(u, {})
-                u_x = float(u_node.get("x", u_node.get("lon", edge_pts[0][0])))
-                u_y = float(u_node.get("y", u_node.get("lat", edge_pts[0][1])))
-                if len(edge_pts) >= 2:
-                    d_start = (edge_pts[0][0] - u_x) ** 2 + (edge_pts[0][1] - u_y) ** 2
-                    d_end = (edge_pts[-1][0] - u_x) ** 2 + (edge_pts[-1][1] - u_y) ** 2
-                    if d_end < d_start:
-                        edge_pts = list(reversed(edge_pts))
-                for pt in edge_pts:
-                    if not route_coords or route_coords[-1] != pt:
-                        route_coords.append(pt)
-            else:
-                u_node = G.nodes.get(u, {})
-                u_x = float(u_node.get("x", u_node.get("lon", 77.67)))
-                u_y = float(u_node.get("y", u_node.get("lat", 12.92)))
-                pt = [u_x, u_y]
-                if not route_coords or route_coords[-1] != pt:
-                    route_coords.append(pt)
+        elif "coordinates" in edge_data and isinstance(edge_data["coordinates"], list) and len(edge_data["coordinates"]) >= 2:
+            edge_pts = [[float(p[0]), float(p[1])] for p in edge_data["coordinates"]]
+        elif "path_coords" in edge_data and isinstance(edge_data["path_coords"], list) and len(edge_data["path_coords"]) >= 2:
+            edge_pts = [[float(p[0]), float(p[1])] for p in edge_data["path_coords"]]
         else:
-            # Fallback to dense node coordinates
-            u_node = G.nodes.get(u, {})
-            u_x = float(u_node.get("x", u_node.get("lon", 77.67)))
-            u_y = float(u_node.get("y", u_node.get("lat", 12.92)))
-            pt = [u_x, u_y]
+            # If no geometry, use the two endpoints strictly
+            edge_pts = [[u_x, u_y], [v_x, v_y]]
+
+        # Ensure coordinate sequence is oriented from u towards v
+        if len(edge_pts) >= 2:
+            d_start = (edge_pts[0][0] - u_x) ** 2 + (edge_pts[0][1] - u_y) ** 2
+            d_end = (edge_pts[-1][0] - u_x) ** 2 + (edge_pts[-1][1] - u_y) ** 2
+            if d_end < d_start:
+                edge_pts = list(reversed(edge_pts))
+
+        # Flatten into ordered coordinate list hugging physical asphalt curves without duplicates
+        for pt in edge_pts:
             if not route_coords or route_coords[-1] != pt:
                 route_coords.append(pt)
 
-    if path:
-        last_node = G.nodes.get(path[-1], {})
-        last_x = float(last_node.get("x", last_node.get("lon", 77.68)))
-        last_y = float(last_node.get("y", last_node.get("lat", 12.92)))
-        last_pt = [last_x, last_y]
-        if not route_coords or route_coords[-1] != last_pt:
-            route_coords.append(last_pt)
+    if not route_coords and path:
+        u_node = G.nodes.get(path[0], {})
+        route_coords.append([
+            float(u_node.get("x", u_node.get("lon", 77.67))),
+            float(u_node.get("y", u_node.get("lat", 12.92)))
+        ])
 
     return route_coords
 

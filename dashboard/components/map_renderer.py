@@ -150,43 +150,22 @@ class MapRenderer:
         layers: List[pdk.Layer] = []
 
         # ─────────────────────────────────────────────────────────────────────
-        # LAYER 0a — Satellite Imagery Basemap (ESRI World Imagery)
+        # LAYER 0 — Satellite Hybrid Basemap (Google Hybrid TileLayer)
         # ─────────────────────────────────────────────────────────────────────
-        # High-resolution satellite raster tiles fetched directly by the browser.
-        # Zero token required — ESRI ArcGIS Online tiles are openly accessible.
-        # map_provider=None + map_style=None on pdk.Deck ensures no Mapbox/GL
-        # token handshake is triggered. The TileLayer IS the sole basemap.
-        satellite_layer = pdk.Layer(
+        # Ultra-crisp hybrid satellite raster tiles with embedded street labels,
+        # flyover names, and place annotations directly from Google Maps tile servers.
+        # Zero token required. Disables default grey CARTO canvas via map_provider=None
+        # and map_style=None on pdk.Deck.
+        hybrid_layer = pdk.Layer(
             "TileLayer",
-            id="satellite-basemap",
-            data="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+            id="hybrid-satellite-tiles",
+            data="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
             min_zoom=0,
-            max_zoom=19,
+            max_zoom=20,
             tile_size=256,
-            opacity=1.0,
-            # CRITICAL: LNGLAT coordinate system prevents tile frustum clipping
-            # at non-zero camera pitch angles.
             coordinate_system=pdk.CoordinateSystem.LNGLAT,
         )
-        layers.append(satellite_layer)
-
-        # ─────────────────────────────────────────────────────────────────────
-        # LAYER 0b — Road Labels & Place Names Overlay (ESRI World Boundaries)
-        # ─────────────────────────────────────────────────────────────────────
-        # Semi-transparent overlay rendered above the satellite imagery.
-        # Provides street names, tech park labels, and administrative boundaries
-        # over the raw satellite tiles without obscuring the imagery beneath.
-        labels_layer = pdk.Layer(
-            "TileLayer",
-            id="satellite-labels",
-            data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
-            min_zoom=0,
-            max_zoom=19,
-            tile_size=256,
-            opacity=0.85,
-            coordinate_system=pdk.CoordinateSystem.LNGLAT,
-        )
-        layers.append(labels_layer)
+        layers.append(hybrid_layer)
 
         # ─────────────────────────────────────────────────────────────────────
         # LAYER 1 — OSM Road Skeleton (dense curve geometry)
@@ -246,6 +225,16 @@ class MapRenderer:
             _BUILDINGS_GEOJSON_PATH,
             fallback={"type": "FeatureCollection", "features": []}
         )
+        if isinstance(_osm_geojson, dict) and "features" in _osm_geojson:
+            for feat in _osm_geojson.get("features", []):
+                props = feat.setdefault("properties", {})
+                b_name = props.get("name") or props.get("building") or "Urban Structure"
+                props.setdefault("name", b_name)
+                props.setdefault("type", "Commercial / Tech Park Asset")
+                props.setdefault("status", "STRUCTURAL CLEAR")
+                h_val = props.get("height", props.get("floors", 6) * 3.5)
+                props.setdefault("depth", f"Height: {h_val}m")
+                props.setdefault("hazard_info", " | Zone Monitored")
 
         osm_buildings_layer = pdk.Layer(
             "GeoJsonLayer",
@@ -519,7 +508,7 @@ class MapRenderer:
                 get_path="path",
                 get_color="color",
                 get_width=9,                   # wider than fill = visible outline
-                width_min_pixels=7,
+                width_min_pixels=9,
                 width_max_pixels=18,
                 pickable=False,
                 rounded=True,
@@ -543,7 +532,7 @@ class MapRenderer:
                 get_path="path",
                 get_color="color",
                 get_width=6,
-                width_min_pixels=4,
+                width_min_pixels=6,
                 width_max_pixels=12,
                 pickable=True,
                 rounded=True,
@@ -577,8 +566,8 @@ class MapRenderer:
                 id="evacuation-corridor-casing",
                 get_path="path",
                 get_color="color",
-                get_width=10,
-                width_min_pixels=8,
+                get_width=9,
+                width_min_pixels=9,
                 width_max_pixels=18,
                 pickable=False,
                 rounded=True,
@@ -600,7 +589,7 @@ class MapRenderer:
                 get_path="path",
                 get_color="color",
                 get_width=6,
-                width_min_pixels=4,
+                width_min_pixels=6,
                 width_max_pixels=12,
                 pickable=True,
                 rounded=True,

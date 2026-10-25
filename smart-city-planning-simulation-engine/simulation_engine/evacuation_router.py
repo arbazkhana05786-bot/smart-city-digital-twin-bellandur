@@ -104,7 +104,9 @@ class EvacuationRouter:
                     edge_data = best
 
             pts: List[List[float]] = []
-            if "geometry" in edge_data and hasattr(edge_data["geometry"], "xy"):
+            if "geometry" in edge_data and hasattr(edge_data["geometry"], "coords"):
+                pts = [[float(c[0]), float(c[1])] for c in list(edge_data["geometry"].coords)]
+            elif "geometry" in edge_data and hasattr(edge_data["geometry"], "xy"):
                 xs, ys = edge_data["geometry"].xy
                 pts = [[float(x), float(y)] for x, y in zip(xs, ys)]
             elif "coordinates" in edge_data and isinstance(edge_data["coordinates"], list):
