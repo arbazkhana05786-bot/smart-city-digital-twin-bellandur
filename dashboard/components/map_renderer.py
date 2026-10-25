@@ -25,7 +25,12 @@ if not hasattr(pdk, "CoordinateSystem"):
 _BASE_DIR = os.path.normpath(
     os.path.join(os.path.dirname(__file__), "..", "..", "data", "osm_graphs")
 )
+_DATA_DIR               = os.path.normpath(
+    os.path.join(os.path.dirname(__file__), "..", "..", "data")
+)
 _BUILDINGS_GEOJSON_PATH = os.path.join(_BASE_DIR, "bengaluru_buildings.geojson")
+# Prefer dense cached network; fall back to legacy OSM network
+_DENSE_NETWORK_PATH     = os.path.join(_DATA_DIR, "bellandur_dense_network.json")
 _NETWORK_JSON_PATH      = os.path.join(_BASE_DIR, "bengaluru_bellandur_network.json")
 
 
@@ -79,53 +84,73 @@ class MapRenderer:
         layers: List[pdk.Layer] = []
 
         # ─────────────────────────────────────────────────────────────────────
-        # LAYER 0 — Raster Basemap TileLayer
+        # LAYER 0a — Satellite Imagery Basemap (ESRI World Imagery)
         # ─────────────────────────────────────────────────────────────────────
-        # Carto Dark Matter PNG raster tiles are fetched directly by the browser
-        # as plain HTTPS image requests.  They require NO Mapbox GL JS token and
-        # completely bypass the vector-style loader that causes the black void.
-        #
-        # With map_provider=None and map_style=None (set on pdk.Deck below),
-        # PyDeck renders a transparent canvas and this TileLayer becomes the
-        # sole, uncontested basemap.
-        basemap_layer = pdk.Layer(
+        # High-resolution satellite raster tiles fetched directly by the browser.
+        # Zero token required — ESRI ArcGIS Online tiles are openly accessible.
+        # map_provider=None + map_style=None on pdk.Deck ensures no Mapbox/GL
+        # token handshake is triggered. The TileLayer IS the sole basemap.
+        satellite_layer = pdk.Layer(
             "TileLayer",
-            id="raster-basemap",
-            data="https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+            id="satellite-basemap",
+            data="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
             min_zoom=0,
             max_zoom=19,
             tile_size=256,
             opacity=1.0,
-            # CRITICAL FIX: Without LNGLAT pinning the tile frustum clips black
-            # under any camera pitch >0°.  This must be explicit.
+            # CRITICAL: LNGLAT coordinate system prevents tile frustum clipping
+            # at non-zero camera pitch angles.
             coordinate_system=pdk.CoordinateSystem.LNGLAT,
         )
-        layers.append(basemap_layer)
+        layers.append(satellite_layer)
 
         # ─────────────────────────────────────────────────────────────────────
-        # LAYER 1 — OSM Road Skeleton (from bengaluru_bellandur_network.json)
+        # LAYER 0b — Road Labels & Place Names Overlay (ESRI World Boundaries)
         # ─────────────────────────────────────────────────────────────────────
-        # Load the full static edge list from the OSM network JSON so that the
-        # physical street grid is always visible on canvas regardless of whether
-        # the simulation has passed any edges via the `edges` argument.
-        _network = _load_json(_NETWORK_JSON_PATH, fallback={"edges": []})
+        # Semi-transparent overlay rendered above the satellite imagery.
+        # Provides street names, tech park labels, and administrative boundaries
+        # over the raw satellite tiles without obscuring the imagery beneath.
+        labels_layer = pdk.Layer(
+            "TileLayer",
+            id="road-labels-overlay",
+            data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+            min_zoom=0,
+            max_zoom=19,
+            tile_size=256,
+            opacity=0.85,
+            coordinate_system=pdk.CoordinateSystem.LNGLAT,
+        )
+        layers.append(labels_layer)
+
+        # ─────────────────────────────────────────────────────────────────────
+        # LAYER 1 — OSM Road Skeleton (dense curve geometry)
+        # ─────────────────────────────────────────────────────────────────────
+        # Prefers the dense cached network (bellandur_dense_network.json) which
+        # contains multi-point 'coordinates' arrays that hug real asphalt curves.
+        # Falls back to the legacy OSM network JSON if dense file is unavailable.
+        _dense_net = _load_json(_DENSE_NETWORK_PATH, fallback=None)
+        if _dense_net is None:
+            _dense_net = _load_json(_NETWORK_JSON_PATH, fallback={"edges": []})
+
         osm_road_paths = []
-        for edge in _network.get("edges", []):
-            coords = edge.get("path_coords", [])
+        for edge in _dense_net.get("edges", []):
+            # 'coordinates' (dense) preferred; 'path_coords' as fallback
+            coords = edge.get("coordinates") or edge.get("path_coords", [])
             if len(coords) >= 2:
+                name_lower = edge.get("name", "").lower()
                 osm_road_paths.append({
-                    "name": edge.get("name", "Road"),
-                    "path": coords,
-                    # Colour: flood-vulnerable roads in amber, blocked in red,
-                    # elevated/flyover in sky-blue, regular roads in slate.
+                    "name":  edge.get("name", "Road"),
+                    "path":  coords,
+                    # Colour: blocked=red, flood-vulnerable=amber,
+                    # elevated/flyover=sky-blue, regular=muted slate
                     "color": (
                         [239, 68,  68,  200] if edge.get("is_blocked") else
                         [251, 191, 36,  190] if edge.get("vulnerable_to_flood") else
-                        [56,  189, 248, 200] if "flyover" in edge.get("name", "").lower() or
-                                               "elevated" in edge.get("name", "").lower() else
-                        [75,  85,  105, 200]   # slate-blue asphalt
+                        [56,  189, 248, 200] if ("flyover" in name_lower or
+                                                 "elevated" in name_lower) else
+                        [100, 116, 139, 180]   # muted slate — satellite contrast
                     ),
-                    "width": 6 if edge.get("is_blocked") else 4,
+                    "width": 6 if edge.get("is_blocked") else 3,
                 })
 
         osm_road_layer = pdk.Layer(
@@ -135,9 +160,9 @@ class MapRenderer:
             get_path="path",
             get_color="color",
             get_width="width",
-            width_min_pixels=2,
-            width_max_pixels=8,
-            pickable=False,   # Static skeleton — keep tooltip clean
+            width_min_pixels=1,
+            width_max_pixels=7,
+            pickable=False,
             rounded=True,
         )
         layers.append(osm_road_layer)
@@ -366,31 +391,59 @@ class MapRenderer:
         layers.append(sim_road_layer)
 
         # ─────────────────────────────────────────────────────────────────────
-        # LAYER 6 — Active EMS Corridor / Detour Bypass (green)
+        # LAYER 6 — Active EMS Corridor (Google-Maps-style dual-stroke route)
         # ─────────────────────────────────────────────────────────────────────
+        # Two-layer technique: dark casing outline rendered first (behind),
+        # then vibrant emerald fill on top — identical to Google Maps navigation.
         ems_path = (ems_route_info.get("path_coords") or ems_route_info.get("waypoints")) if ems_route_info else None
         if ems_route_info and ems_path:
-            ems_path_data = [{
-                "name":   ems_route_info.get("route_name", "EMS Corridor"),
+            route_label = ems_route_info.get("route_name", "EMS Corridor")
+            route_status = ems_route_info.get("status_badge", "ACTIVE")
+            route_eta    = f"{ems_route_info.get('est_time_min', 5.0):.1f} min"
+
+            # 6a — Dark contrast casing (outline / backing stroke)
+            ems_casing_data = [{
+                "name":   route_label,
                 "path":   ems_path,
-                "color":  ems_route_info.get("color", [16, 185, 129, 255]),
-                "width":  10,
-                "status": ems_route_info.get("status_badge", "ACTIVE"),
-                "eta":    f"{ems_route_info.get('est_time_min', 5.0):.1f} min",
+                "color":  [6, 78, 59, 200],   # Deep forest green casing
+                "status": route_status,
+                "eta":    route_eta,
             }]
-            ems_layer = pdk.Layer(
+            ems_casing_layer = pdk.Layer(
                 "PathLayer",
-                ems_path_data,
-                id="ems-corridor-layer",
+                ems_casing_data,
+                id="ems-corridor-casing",
                 get_path="path",
                 get_color="color",
-                get_width=10,
-                width_min_pixels=5,
-                width_max_pixels=14,
+                get_width=9,                   # wider than fill = visible outline
+                width_min_pixels=7,
+                width_max_pixels=18,
+                pickable=False,
+                rounded=True,
+            )
+            layers.append(ems_casing_layer)
+
+            # 6b — Vibrant emerald fill (primary visible stroke)
+            ems_fill_data = [{
+                "name":   route_label,
+                "path":   ems_path,
+                "color":  [16, 185, 129, 255],  # Emerald green #10B981
+                "status": route_status,
+                "eta":    route_eta,
+            }]
+            ems_fill_layer = pdk.Layer(
+                "PathLayer",
+                ems_fill_data,
+                id="ems-corridor-fill",
+                get_path="path",
+                get_color="color",
+                get_width=6,
+                width_min_pixels=4,
+                width_max_pixels=12,
                 pickable=True,
                 rounded=True,
             )
-            layers.append(ems_layer)
+            layers.append(ems_fill_layer)
 
         # ─────────────────────────────────────────────────────────────────────
         # LAYER 7 — Fire CA Hazard Boundary Rings (orange/amber)
