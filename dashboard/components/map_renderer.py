@@ -43,6 +43,71 @@ def _load_json(path: str, fallback) -> Any:
         return fallback
 
 
+def _unpack_curve_points(path: List[Any], dense_net: Dict[str, Any] = None) -> List[List[float]]:
+    """
+    Retrieves and unpacks all intermediate curve points along consecutive edge segments
+    rather than connecting junction centroids directly.
+    """
+    if not path:
+        return []
+    # If path elements are segment dicts
+    if all(isinstance(p, dict) for p in path):
+        out = []
+        for segment in path:
+            seg_pts = segment.get("coordinates") or segment.get("path_coords") or []
+            for pt in seg_pts:
+                if not out or out[-1] != pt:
+                    out.append(pt)
+        if len(out) >= 2:
+            return out
+
+    pts = [[float(p[0]), float(p[1])] for p in path if isinstance(p, (list, tuple)) and len(p) >= 2]
+    if len(pts) <= 1 or not dense_net:
+        return pts
+
+    # If already high density (>= 12 curve points), return directly
+    if len(pts) >= 12:
+        return pts
+
+    edges = dense_net.get("edges", [])
+    if not edges:
+        return pts
+
+    unpacked = []
+    for i in range(len(pts) - 1):
+        p1 = pts[i]
+        p2 = pts[i + 1]
+        best_segment = None
+        min_dist = float("inf")
+
+        for e in edges:
+            ecoords = e.get("coordinates") or e.get("path_coords") or []
+            if len(ecoords) < 2:
+                continue
+            e_start = ecoords[0]
+            e_end = ecoords[-1]
+            d_fwd = (p1[0] - e_start[0])**2 + (p1[1] - e_start[1])**2 + (p2[0] - e_end[0])**2 + (p2[1] - e_end[1])**2
+            d_rev = (p1[0] - e_end[0])**2 + (p1[1] - e_end[1])**2 + (p2[0] - e_start[0])**2 + (p2[1] - e_start[1])**2
+
+            if d_fwd < min_dist:
+                min_dist = d_fwd
+                best_segment = ecoords
+            if d_rev < min_dist:
+                min_dist = d_rev
+                best_segment = list(reversed(ecoords))
+
+        if best_segment and min_dist < 0.0001:
+            for pt in best_segment:
+                if not unpacked or unpacked[-1] != pt:
+                    unpacked.append(pt)
+        else:
+            if not unpacked or unpacked[-1] != p1:
+                unpacked.append(p1)
+            unpacked.append(p2)
+
+    return unpacked if len(unpacked) >= len(pts) else pts
+
+
 class MapRenderer:
     """Constructs PyDeck Deck with custom 3D and vector hazard layers."""
 
@@ -64,7 +129,8 @@ class MapRenderer:
         fire_info: Dict[str, Any] = None,
         seismic_magnitude: float = 0.0,
         signal_states: List[Dict[str, Any]] = None,
-        assembly_grounds: List[Dict[str, Any]] = None
+        assembly_grounds: List[Dict[str, Any]] = None,
+        evacuation_route_info: Dict[str, Any] = None,
     ) -> pdk.Deck:
         """
         Assemble PyDeck layers dynamically based on current simulation state.
@@ -137,9 +203,11 @@ class MapRenderer:
             # 'coordinates' (dense) preferred; 'path_coords' as fallback
             coords = edge.get("coordinates") or edge.get("path_coords", [])
             if len(coords) >= 2:
-                name_lower = edge.get("name", "").lower()
+                raw_name = edge.get("name", "Road")
+                name_str = " ".join(str(x) for x in raw_name) if isinstance(raw_name, list) else str(raw_name or "Road")
+                name_lower = name_str.lower()
                 osm_road_paths.append({
-                    "name":  edge.get("name", "Road"),
+                    "name":  name_str,
                     "path":  coords,
                     # Colour: blocked=red, flood-vulnerable=amber,
                     # elevated/flyover=sky-blue, regular=muted slate
@@ -397,6 +465,7 @@ class MapRenderer:
         # then vibrant emerald fill on top — identical to Google Maps navigation.
         ems_path = (ems_route_info.get("path_coords") or ems_route_info.get("waypoints")) if ems_route_info else None
         if ems_route_info and ems_path:
+            ems_path = _unpack_curve_points(ems_path, _dense_net)
             route_label = ems_route_info.get("route_name", "EMS Corridor")
             route_status = ems_route_info.get("status_badge", "ACTIVE")
             route_eta    = f"{ems_route_info.get('est_time_min', 5.0):.1f} min"
@@ -444,6 +513,54 @@ class MapRenderer:
                 rounded=True,
             )
             layers.append(ems_fill_layer)
+
+        # ─────────────────────────────────────────────────────────────────────
+        # LAYER 6c — Evacuation Route / Safe Assembly Corridor
+        # ─────────────────────────────────────────────────────────────────────
+        evac_path = (
+            evacuation_route_info.get("path_coords") or
+            evacuation_route_info.get("evacuation_corridor_coords") or
+            evacuation_route_info.get("waypoints")
+        ) if evacuation_route_info else None
+        if evacuation_route_info and evac_path:
+            evac_path = _unpack_curve_points(evac_path, _dense_net)
+            evac_label = evacuation_route_info.get("route_name", "Safe Evacuation Corridor")
+
+            # Evacuation casing (dark outline)
+            layers.append(pdk.Layer(
+                "PathLayer",
+                [{
+                    "name": evac_label,
+                    "path": evac_path,
+                    "color": [6, 78, 59, 200],
+                }],
+                id="evacuation-corridor-casing",
+                get_path="path",
+                get_color="color",
+                get_width=10,
+                width_min_pixels=8,
+                width_max_pixels=18,
+                pickable=False,
+                rounded=True,
+            ))
+
+            # Evacuation line (clean emerald green line)
+            layers.append(pdk.Layer(
+                "PathLayer",
+                [{
+                    "name": evac_label,
+                    "path": evac_path,
+                    "color": [16, 185, 129, 255],
+                }],
+                id="evacuation-corridor-fill",
+                get_path="path",
+                get_color="color",
+                get_width=6,
+                width_min_pixels=4,
+                width_max_pixels=12,
+                pickable=True,
+                rounded=True,
+            ))
 
         # ─────────────────────────────────────────────────────────────────────
         # LAYER 7 — Fire CA Hazard Boundary Rings (orange/amber)

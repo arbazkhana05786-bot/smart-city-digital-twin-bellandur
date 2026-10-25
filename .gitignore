@@ -22,6 +22,7 @@ ehthumbs.db
 [Dd]esktop.ini
 
 # Temporary cache folders & logs
+cache/
 .cache/
 .pytest_cache/
 .mypy_cache/

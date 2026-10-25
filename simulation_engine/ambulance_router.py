@@ -60,26 +60,52 @@ SECONDARY_FALLBACK = (12.9166, 77.6782)  # Manipal Hospital Sarjapur (Emergency 
 
 # Dense elevated ORR flyover bypass coordinates [lon, lat] (PyDeck PathLayer compatible).
 # Route: Bellandur Gate -> elevated ramp -> Gear School apex -> Sakra World Hospital.
-# Follows dense physical asphalt road curve from OpenStreetMap.
+# Follows dense physical asphalt road curve from OpenStreetMap with all intermediate curve points.
 GEAR_SCHOOL_NORTH_BYPASS = [
     [77.6710, 12.9235],   # Bellandur Gate elevated ramp junction
+    [77.6710, 12.9250],   # Ramp ascent curve 1
+    [77.6711, 12.9265],   # Ramp curve 2
     [77.6712, 12.9278],   # Ramp ascent curve north of flood basin
+    [77.6718, 12.9290],   # Flyover transition curve 1
+    [77.6728, 12.9298],   # Flyover transition curve 2
     [77.6740, 12.9304],   # ORR mainline curve towards Gear School
+    [77.6753, 12.9309],   # Gear School approach curve
     [77.6768, 12.9312],   # Gear School Road apex crossing
+    [77.6782, 12.9310],   # Eastbound flyover curve 1
+    [77.6795, 12.9308],   # Eastbound flyover curve 2
     [77.6805, 12.9305],   # ORR elevated flyover eastbound curve
+    [77.6815, 12.9300],   # Flyover descent approach 1
+    [77.6825, 12.9296],   # Flyover descent approach 2
     [77.6838, 12.9288],   # Descent towards hospital access link
+    [77.6852, 12.9285],   # Hospital link curve 1
+    [77.6863, 12.9283],   # Hospital link curve 2
     [77.6875, 12.9282]    # Sakra World Hospital access junction
 ]
 
 # Southern bypass via Sarjapur Road when Sakra is also blocked [lon, lat]
-# Follows dense physical asphalt road curve from OpenStreetMap.
+# Follows dense physical asphalt road curve from OpenStreetMap with all intermediate curve points.
 SARJAPUR_SOUTH_BYPASS = [
     [77.6655, 12.9208],   # Iblur Junction
+    [77.6665, 12.9195],   # Sarjapur Road curve 1
+    [77.6675, 12.9182],   # Sarjapur Road curve 2
     [77.6685, 12.9175],   # Sarjapur Road entrance curve
+    [77.6700, 12.9162],   # Kaikondrahalli approach curve 1
+    [77.6710, 12.9153],   # Kaikondrahalli approach curve 2
     [77.6720, 12.9150],   # Sarjapur Road / Kaikondrahalli Junction
+    [77.6745, 12.9145],   # Doddakannelli link curve 1
+    [77.6770, 12.9142],   # Doddakannelli link curve 2
     [77.6800, 12.9140],   # Doddakannelli bypass mid-curve
+    [77.6835, 12.9137],   # Doddakannelli link curve 3
+    [77.6865, 12.9136],   # Doddakannelli link curve 4
     [77.6890, 12.9135],   # Doddakannelli Cross
-    [77.6940, 12.9210],   # Carmelaram-Panathur curve
+    [77.6905, 12.9155],   # Carmelaram curve 1
+    [77.6918, 12.9175],   # Carmelaram curve 2
+    [77.6928, 12.9195],   # Carmelaram curve 3
+    [77.6937, 12.9212],   # Panathur ascent curve 1
+    [77.6948, 12.9232],   # Panathur ascent curve 2
+    [77.6960, 12.9252],   # Panathur link curve 1
+    [77.6972, 12.9268],   # Panathur link curve 2
+    [77.6985, 12.9282],   # Panathur Link Arterial approach
     [77.6995, 12.9290]    # Panathur Link Arterial
 ]
 
@@ -187,8 +213,8 @@ def extract_route_coordinates(G: nx.Graph, path: List[str]) -> List[List[float]]
             for pt in edge_pts:
                 if not route_coords or route_coords[-1] != pt:
                     route_coords.append(pt)
-        elif "path_coords" in edge_data:
-            raw_pc = edge_data["path_coords"]
+        elif "coordinates" in edge_data or "path_coords" in edge_data:
+            raw_pc = edge_data.get("coordinates") if "coordinates" in edge_data else edge_data.get("path_coords")
             if isinstance(raw_pc, str):
                 import json as _json
                 try:

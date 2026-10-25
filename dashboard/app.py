@@ -1894,10 +1894,18 @@ else:
             if mode == "DISASTER_EARTHQUAKE" and current_quake_mag >= 6.0:
                 green_corridor["waypoints"] = [
                     [77.6710, 12.9235],
+                    [77.6700, 12.9230],
+                    [77.6685, 12.9222],
+                    [77.6672, 12.9215],
+                    [77.6655, 12.9208],
+                    [77.6665, 12.9195],
+                    [77.6675, 12.9182],
                     [77.6685, 12.9175],
+                    [77.6700, 12.9162],
+                    [77.6710, 12.9153],
                     [77.6720, 12.9150],
-                    [77.6740, 12.9125],
-                    [77.6782, 12.9166]
+                    [77.6740, 12.9135],
+                    [77.6740, 12.9125]
                 ]
                 green_corridor["path_coords"] = green_corridor["waypoints"]
                 green_corridor["hospital_name"] = "Kaikondrahalli Lake Grounds (Perimeter Assembly Hub)"
@@ -1936,22 +1944,83 @@ else:
             layers = []
 
             # ─────────────────────────────────────────────────────────────
-            # LAYER 0 — Raster Basemap TileLayer (Carto Dark Matter)
-            # map_provider=None + map_style=None means PyDeck renders a
-            # transparent canvas; this TileLayer IS the basemap.
-            # coordinate_system=LNGLAT is mandatory to prevent tile
-            # frustum clipping (pitch-black void) at any camera pitch > 0°.
+            # LAYER 0a — Satellite Imagery Basemap (ESRI World Imagery)
+            # High-resolution satellite raster tiles fetched directly by the browser.
+            # Zero token required — ESRI ArcGIS Online tiles are openly accessible.
             # ─────────────────────────────────────────────────────────────
             layers.append(pdk.Layer(
                 "TileLayer",
-                id="raster-basemap",
-                data="https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+                id="satellite-basemap",
+                data="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 min_zoom=0,
                 max_zoom=19,
                 tile_size=256,
                 opacity=1.0,
                 coordinate_system=pdk.CoordinateSystem.LNGLAT,
             ))
+
+            # ─────────────────────────────────────────────────────────────
+            # LAYER 0b — Road Labels & Place Names Overlay (ESRI World Boundaries)
+            # Semi-transparent overlay with street names and administrative labels
+            # ─────────────────────────────────────────────────────────────
+            layers.append(pdk.Layer(
+                "TileLayer",
+                id="road-labels-overlay",
+                data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+                min_zoom=0,
+                max_zoom=19,
+                tile_size=256,
+                opacity=0.85,
+                coordinate_system=pdk.CoordinateSystem.LNGLAT,
+            ))
+
+            # ─────────────────────────────────────────────────────────────
+            # LAYER 0c — Dense Road Skeleton Overlay (Real curved geometries)
+            # ─────────────────────────────────────────────────────────────
+            dense_net_file = PROJECT_ROOT / "data" / "bellandur_dense_network.json"
+            if not dense_net_file.exists():
+                dense_net_file = PROJECT_ROOT / "data" / "osm_graphs" / "bengaluru_bellandur_network.json"
+            dense_net_raw = {}
+            if dense_net_file.exists():
+                try:
+                    import json as _json
+                    with open(dense_net_file, "r", encoding="utf-8") as _dfh:
+                        dense_net_raw = _json.load(_dfh)
+                except Exception:
+                    pass
+
+            road_skeleton_paths = []
+            for _edge in dense_net_raw.get("edges", []):
+                _coords = _edge.get("coordinates") or _edge.get("path_coords", [])
+                if len(_coords) >= 2:
+                    _rn = _edge.get("name", "Road")
+                    _name_str = " ".join(str(x) for x in _rn) if isinstance(_rn, list) else str(_rn or "Road")
+                    _nl = _name_str.lower()
+                    road_skeleton_paths.append({
+                        "name": _name_str,
+                        "path": _coords,
+                        "color": (
+                            [239, 68, 68, 200] if _edge.get("is_blocked") else
+                            [251, 191, 36, 190] if _edge.get("vulnerable_to_flood") else
+                            [56, 189, 248, 200] if ("flyover" in _nl or "elevated" in _nl) else
+                            [100, 116, 139, 180]
+                        ),
+                        "width": 6 if _edge.get("is_blocked") else 3,
+                    })
+
+            if road_skeleton_paths:
+                layers.append(pdk.Layer(
+                    "PathLayer",
+                    road_skeleton_paths,
+                    id="road-skeleton",
+                    get_path="path",
+                    get_color="color",
+                    get_width="width",
+                    width_min_pixels=1,
+                    width_max_pixels=7,
+                    pickable=False,
+                    rounded=True,
+                ))
 
             # ─────────────────────────────────────────────────────────────
             # LAYER 1 — 3D Extruded Buildings
@@ -2073,6 +2142,22 @@ else:
                 ))
 
                 # Dynamically recalculated green corridor route using simulation engine
+                # Dark casing outline [6, 78, 59, 200]
+                layers.append(pdk.Layer(
+                    "PathLayer",
+                    [{
+                        "path": green_corridor["waypoints"],
+                        "color": [6, 78, 59, 200],
+                        "name": f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                    }],
+                    id="human-recalc-bypass-casing",
+                    get_path="path",
+                    get_color="color",
+                    width_min_pixels=13,
+                    pickable=False,
+                    rounded=True
+                ))
+                # Clean emerald green line [16, 185, 129, 255]
                 layers.append(pdk.Layer(
                     "PathLayer",
                     [{
@@ -2083,8 +2168,9 @@ else:
                     id="human-recalc-bypass",
                     get_path="path",
                     get_color="color",
-                    width_min_pixels=10,
-                    pickable=True
+                    width_min_pixels=9,
+                    pickable=True,
+                    rounded=True
                 ))
 
                 # Destination Hospital Marker Pin
@@ -2166,6 +2252,22 @@ else:
                         pickable=True
                     ))
 
+                    # Dark casing outline [6, 78, 59, 200]
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path": green_corridor["waypoints"],
+                            "color": [6, 78, 59, 200],
+                            "name": f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                        }],
+                        id="ems-flyover-bypass-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=11,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    # Clean emerald green line [16, 185, 129, 255]
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{
@@ -2177,7 +2279,8 @@ else:
                         get_path="path",
                         get_color="color",
                         width_min_pixels=7,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     dest_pt_auto = green_corridor["waypoints"][-1]
@@ -2241,10 +2344,23 @@ else:
                     # Green fire-tender corridor from Sarjapur Base
                     fire_tender_route = [
                         [77.6655, 12.9208],
+                        [77.6685, 12.9222],
                         [77.6710, 12.9235],
+                        [77.6740, 12.9252],
                         [77.6770, 12.9265],
+                        [77.6800, 12.9258],
                         [77.6842, 12.9250]
                     ]
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{"path": fire_tender_route, "color": [6, 78, 59, 200], "name": "FIRE-TENDER RAPID CORRIDOR (CLEAR OF PUBLIC TRAFFIC)"}],
+                        id="fire-tender-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=13,
+                        pickable=False,
+                        rounded=True
+                    ))
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{"path": fire_tender_route, "color": [16, 185, 129, 255], "name": "FIRE-TENDER RAPID CORRIDOR (CLEAR OF PUBLIC TRAFFIC)"}],
@@ -2252,10 +2368,25 @@ else:
                         get_path="path",
                         get_color="color",
                         width_min_pixels=9,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     # Dynamic evacuation corridor avoiding thermal hazard
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path": green_corridor["waypoints"],
+                            "color": [6, 78, 59, 200],
+                            "name": f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                        }],
+                        id="fire-recalc-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=12,
+                        pickable=False,
+                        rounded=True
+                    ))
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{
@@ -2267,7 +2398,8 @@ else:
                         get_path="path",
                         get_color="color",
                         width_min_pixels=8,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     dest_pt_fire = green_corridor["waypoints"][-1]
@@ -2293,6 +2425,20 @@ else:
                             "PathLayer",
                             [{
                                 "path": green_corridor["waypoints"],
+                                "color": [6, 78, 59, 200],
+                                "name": "NORMAL ARTERIAL TRANSIT: All Corridors Open & Stable (M < 3.5 Minor)"
+                            }],
+                            id="quake-clear-corridor-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=11,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path": green_corridor["waypoints"],
                                 "color": [16, 185, 129, 255],
                                 "name": "NORMAL ARTERIAL TRANSIT: All Corridors Open & Stable (M < 3.5 Minor)"
                             }],
@@ -2300,7 +2446,8 @@ else:
                             get_path="path",
                             get_color="color",
                             width_min_pixels=7,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
                     elif 3.5 <= current_quake_mag < 6.0:
                         # 3.5 <= M < 6.0: Moderate - Masonry crack warnings, flyover ramp closures due to spalling debris, bypass route engaged
@@ -2329,6 +2476,20 @@ else:
                             "PathLayer",
                             [{
                                 "path": green_corridor["waypoints"],
+                                "color": [6, 78, 59, 200],
+                                "name": f"ENGAGED BYPASS ROUTE: {green_corridor['hospital_name']} (At-Grade Arterial Bypass)"
+                            }],
+                            id="quake-bypass-route-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=12,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path": green_corridor["waypoints"],
                                 "color": [16, 185, 129, 255],
                                 "name": f"ENGAGED BYPASS ROUTE: {green_corridor['hospital_name']} (At-Grade Arterial Bypass)"
                             }],
@@ -2336,7 +2497,8 @@ else:
                             get_path="path",
                             get_color="color",
                             width_min_pixels=8,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
                     else:
                         # M >= 6.0: Severe - Buildings along fault line turn deep collapse-red, multiple road segments blocked by structural rubble, evacuation falls back to perimeter residential bypass corridors
@@ -2371,6 +2533,20 @@ else:
                             "PathLayer",
                             [{
                                 "path": green_corridor["waypoints"],
+                                "color": [6, 78, 59, 200],
+                                "name": "PERIMETER RESIDENTIAL EVACUATION CORRIDOR: Toward Kaikondrahalli Lake Grounds"
+                            }],
+                            id="quake-perimeter-evac-route-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=14,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path": green_corridor["waypoints"],
                                 "color": [16, 185, 129, 255],
                                 "name": "PERIMETER RESIDENTIAL EVACUATION CORRIDOR: Toward Kaikondrahalli Lake Grounds"
                             }],
@@ -2378,7 +2554,8 @@ else:
                             get_path="path",
                             get_color="color",
                             width_min_pixels=10,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
 
                     dest_pt_quake = green_corridor["waypoints"][-1]
@@ -2417,6 +2594,20 @@ else:
                         "PathLayer",
                         [{
                             "path": green_corridor["waypoints"],
+                            "color": [6, 78, 59, 200],
+                            "name": f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                        }],
+                        id="action-plan-ems-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=14,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path": green_corridor["waypoints"],
                             "color": [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
                             "name": f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
                         }],
@@ -2424,7 +2615,8 @@ else:
                         get_path="path",
                         get_color="color",
                         width_min_pixels=10,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
                     dest_pt_plan = green_corridor["waypoints"][-1]
                     layers.append(pdk.Layer(
