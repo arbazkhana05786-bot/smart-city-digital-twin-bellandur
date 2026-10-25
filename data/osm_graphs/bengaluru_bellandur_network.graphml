@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d17" for="edge" attr.name="path_coords" attr.type="string" />
+  <key id="d16" for="edge" attr.name="is_blocked" attr.type="boolean" />
+  <key id="d15" for="edge" attr.name="flood_threshold_rainfall_mm" attr.type="double" />
+  <key id="d14" for="edge" attr.name="vulnerable_to_flood" attr.type="boolean" />
+  <key id="d13" for="edge" attr.name="is_service_road" attr.type="boolean" />
+  <key id="d12" for="edge" attr.name="current_speed_kmh" attr.type="double" />
+  <key id="d11" for="edge" attr.name="base_speed_kmh" attr.type="double" />
+  <key id="d10" for="edge" attr.name="distance_m" attr.type="long" />
+  <key id="d9" for="edge" attr.name="name" attr.type="string" />
+  <key id="d8" for="edge" attr.name="id" attr.type="string" />
+  <key id="d7" for="node" attr.name="signalized" attr.type="boolean" />
+  <key id="d6" for="node" attr.name="type" attr.type="string" />
+  <key id="d5" for="node" attr.name="elevation_m" attr.type="double" />
+  <key id="d4" for="node" attr.name="lon" attr.type="double" />
+  <key id="d3" for="node" attr.name="lat" attr.type="double" />
+  <key id="d2" for="node" attr.name="name" attr.type="string" />
+  <key id="d1" for="graph" attr.name="crs" attr.type="string" />
+  <key id="d0" for="graph" attr.name="name" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="node_iblur">
+      <data key="d2">Iblur Junction (Sarjapur-ORR)</data>
+      <data key="d3">12.9208</data>
+      <data key="d4">77.6655</data>
+      <data key="d5">887.0</data>
+      <data key="d6">major_intersection</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_bellandur_gate">
+      <data key="d2">Bellandur Gate Junction</data>
+      <data key="d3">12.9235</data>
+      <data key="d4">77.671</data>
+      <data key="d5">884.2</data>
+      <data key="d6">signal_node</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_bellandur_underpass">
+      <data key="d2">Bellandur ORR Underpass (Low Elevation Inundation Point)</data>
+      <data key="d3">12.9262</data>
+      <data key="d4">77.6765</data>
+      <data key="d5">878.0</data>
+      <data key="d6">underpass_chokepoint</data>
+      <data key="d7">False</data>
+    </node>
+    <node id="node_bellandur_flyover_crest">
+      <data key="d2">Bellandur Main Flyover (Elevated)</data>
+      <data key="d3">12.9265</data>
+      <data key="d4">77.677</data>
+      <data key="d5">892.0</data>
+      <data key="d6">elevated_flyover</data>
+      <data key="d7">False</data>
+    </node>
+    <node id="node_ecospace_front">
+      <data key="d2">Ecospace Business Park Entrance</data>
+      <data key="d3">12.925</data>
+      <data key="d4">77.6842</data>
+      <data key="d5">881.5</data>
+      <data key="d6">tech_park_gateway</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_sakra_junction">
+      <data key="d2">Sakra World Hospital Access Junction</data>
+      <data key="d3">12.9282</data>
+      <data key="d4">77.6875</data>
+      <data key="d5">883.0</data>
+      <data key="d6">hospital_access</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_devarabisanahalli">
+      <data key="d2">Devarabisanahalli Flyover Base</data>
+      <data key="d3">12.9305</data>
+      <data key="d4">77.6905</data>
+      <data key="d5">884.0</data>
+      <data key="d6">major_intersection</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_kadubeesanahalli">
+      <data key="d2">Kadubeesanahalli Junction (Underpass)</data>
+      <data key="d3">12.9355</data>
+      <data key="d4">77.6955</data>
+      <data key="d5">882.5</data>
+      <data key="d6">signal_node</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_marathahalli_bridge">
+      <data key="d2">Marathahalli Multiplex &amp; Bridge Hub</data>
+      <data key="d3">12.955</data>
+      <data key="d4">77.701</data>
+      <data key="d5">886.0</data>
+      <data key="d6">terminal_hub</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_sarjapur_road_mid">
+      <data key="d2">Sarjapur Road / Kaikondrahalli Junction</data>
+      <data key="d3">12.915</data>
+      <data key="d4">77.672</data>
+      <data key="d5">888.5</data>
+      <data key="d6">detour_arterial</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_doddakannelli">
+      <data key="d2">Doddakannelli Bypass Cross</data>
+      <data key="d3">12.9135</data>
+      <data key="d4">77.689</data>
+      <data key="d5">889.0</data>
+      <data key="d6">detour_connector</data>
+      <data key="d7">False</data>
+    </node>
+    <node id="node_panathur_link">
+      <data key="d2">Panathur - Kadubeesanahalli Detour Connector</data>
+      <data key="d3">12.929</data>
+      <data key="d4">77.6995</data>
+      <data key="d5">886.0</data>
+      <data key="d6">detour_arterial</data>
+      <data key="d7">True</data>
+    </node>
+    <node id="node_kaikondrahalli_ground">
+      <data key="d2">Kaikondrahalli Lake Safe Assembly Grounds</data>
+      <data key="d3">12.9125</data>
+      <data key="d4">77.674</data>
+      <data key="d5">889.5</data>
+      <data key="d6">evacuation_assembly</data>
+      <data key="d7">False</data>
+    </node>
+    <node id="node_bellandur_sports_ground">
+      <data key="d2">Bellandur Community Sports Ground</data>
+      <data key="d3">12.932</data>
+      <data key="d4">77.671</data>
+      <data key="d5">887.0</data>
+      <data key="d6">evacuation_assembly</data>
+      <data key="d7">False</data>
+    </node>
+    <node id="node_gear_school_cross">
+      <data key="d2">Gear School Road North Apex (Elevated Bypass)</data>
+      <data key="d3">12.9312</data>
+      <data key="d4">77.6768</data>
+      <data key="d5">894.0</data>
+      <data key="d6">elevated_bypass_apex</data>
+      <data key="d7">False</data>
+    </node>
+    <edge source="node_iblur" target="node_bellandur_gate" id="0">
+      <data key="d8">edge_iblur_to_bellandur_gate</data>
+      <data key="d9">ORR Arterial (Iblur to Bellandur Gate)</data>
+      <data key="d10">750</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">999.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6655, 12.9208], [77.671, 12.9235]]</data>
+    </edge>
+    <edge source="node_iblur" target="node_bellandur_underpass" id="0">
+      <data key="d8">edge_iblur_to_bellandur_underpass</data>
+      <data key="d9">ORR Service Road (via Bellandur Underpass)</data>
+      <data key="d10">1250</data>
+      <data key="d11">40.0</data>
+      <data key="d12">40.0</data>
+      <data key="d13">True</data>
+      <data key="d14">True</data>
+      <data key="d15">45.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6655, 12.9208], [77.671, 12.9235], [77.6765, 12.9262]]</data>
+    </edge>
+    <edge source="node_iblur" target="node_ecospace_front" id="0">
+      <data key="d8">edge_bellandur_flyover_elevated</data>
+      <data key="d9">ORR Main Elevated Flyover (Flood Resistant)</data>
+      <data key="d10">2100</data>
+      <data key="d11">55.0</data>
+      <data key="d12">55.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">999.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6655, 12.9208], [77.6705, 12.9235], [77.6712, 12.9278], [77.674, 12.9304], [77.6768, 12.9312], [77.6805, 12.9305], [77.6838, 12.9288], [77.6855, 12.927], [77.6842, 12.925]]</data>
+    </edge>
+    <edge source="node_iblur" target="node_sarjapur_road_mid" id="0">
+      <data key="d8">edge_sarjapur_bypass_corridor</data>
+      <data key="d9">Sarjapur Road Bypass Corridor Link 1</data>
+      <data key="d10">1100</data>
+      <data key="d11">42.0</data>
+      <data key="d12">42.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">95.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6655, 12.9208], [77.6685, 12.9175], [77.672, 12.915]]</data>
+    </edge>
+    <edge source="node_bellandur_gate" target="node_bellandur_sports_ground" id="0">
+      <data key="d8">edge_evac_bellandur_to_sports</data>
+      <data key="d9">Evacuation Path to Bellandur Sports Ground</data>
+      <data key="d10">920</data>
+      <data key="d11">28.0</data>
+      <data key="d12">28.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">65.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.671, 12.9235], [77.67, 12.928], [77.671, 12.932]]</data>
+    </edge>
+    <edge source="node_bellandur_gate" target="node_gear_school_cross" id="0">
+      <data key="d8">edge_bellandur_to_gear_school</data>
+      <data key="d9">Elevated Flyover Ramp to Gear School Bypass</data>
+      <data key="d10">1150</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">999.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.671, 12.9235], [77.6712, 12.9278], [77.674, 12.9304], [77.6768, 12.9312]]</data>
+    </edge>
+    <edge source="node_bellandur_underpass" target="node_ecospace_front" id="0">
+      <data key="d8">edge_underpass_to_ecospace</data>
+      <data key="d9">Bellandur Service Road to Ecospace</data>
+      <data key="d10">850</data>
+      <data key="d11">35.0</data>
+      <data key="d12">35.0</data>
+      <data key="d13">True</data>
+      <data key="d14">True</data>
+      <data key="d15">40.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6765, 12.9262], [77.68, 12.9256], [77.6842, 12.925]]</data>
+    </edge>
+    <edge source="node_ecospace_front" target="node_sakra_junction" id="0">
+      <data key="d8">edge_ecospace_to_sakra</data>
+      <data key="d9">ORR Ecospace to Sakra Hospital Access</data>
+      <data key="d10">450</data>
+      <data key="d11">40.0</data>
+      <data key="d12">40.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">80.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6842, 12.925], [77.6875, 12.9282]]</data>
+    </edge>
+    <edge source="node_ecospace_front" target="node_kaikondrahalli_ground" id="0">
+      <data key="d8">edge_evac_ecospace_to_kaikondrahalli</data>
+      <data key="d9">Emergency Evacuation Route to Kaikondrahalli Ground</data>
+      <data key="d10">1850</data>
+      <data key="d11">30.0</data>
+      <data key="d12">30.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">70.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6842, 12.925], [77.678, 12.92], [77.674, 12.9125]]</data>
+    </edge>
+    <edge source="node_sakra_junction" target="node_devarabisanahalli" id="0">
+      <data key="d8">edge_sakra_to_devarabisanahalli</data>
+      <data key="d9">ORR Sakra to Devarabisanahalli Flyover</data>
+      <data key="d10">420</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">85.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6875, 12.9282], [77.6905, 12.9305]]</data>
+    </edge>
+    <edge source="node_devarabisanahalli" target="node_kadubeesanahalli" id="0">
+      <data key="d8">edge_devarabisanahalli_to_kadubeesanahalli</data>
+      <data key="d9">ORR Devarabisanahalli to Kadubeesanahalli</data>
+      <data key="d10">780</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">70.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6905, 12.9305], [77.6955, 12.9355]]</data>
+    </edge>
+    <edge source="node_kadubeesanahalli" target="node_marathahalli_bridge" id="0">
+      <data key="d8">edge_kadubeesanahalli_to_marathahalli</data>
+      <data key="d9">ORR Kadubeesanahalli to Marathahalli Hub</data>
+      <data key="d10">2200</data>
+      <data key="d11">50.0</data>
+      <data key="d12">50.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">90.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6955, 12.9355], [77.698, 12.945], [77.701, 12.955]]</data>
+    </edge>
+    <edge source="node_sarjapur_road_mid" target="node_kaikondrahalli_ground" id="0">
+      <data key="d8">edge_sarjapur_to_kaikondrahalli</data>
+      <data key="d9">Sarjapur Road to Kaikondrahalli Safe Hub / Manipal Access</data>
+      <data key="d10">350</data>
+      <data key="d11">40.0</data>
+      <data key="d12">40.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">999.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.672, 12.915], [77.674, 12.9125]]</data>
+    </edge>
+    <edge source="node_sarjapur_road_mid" target="node_doddakannelli" id="0">
+      <data key="d8">edge_sarjapur_to_doddakannelli</data>
+      <data key="d9">Sarjapur Road to Doddakannelli</data>
+      <data key="d10">1900</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">90.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.672, 12.915], [77.68, 12.914], [77.689, 12.9135]]</data>
+    </edge>
+    <edge source="node_doddakannelli" target="node_panathur_link" id="0">
+      <data key="d8">edge_doddakannelli_to_panathur</data>
+      <data key="d9">Carmelaram - Panathur Detour Road</data>
+      <data key="d10">2100</data>
+      <data key="d11">38.0</data>
+      <data key="d12">38.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">80.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.689, 12.9135], [77.694, 12.921], [77.6995, 12.929]]</data>
+    </edge>
+    <edge source="node_panathur_link" target="node_kadubeesanahalli" id="0">
+      <data key="d8">edge_panathur_to_kadubeesanahalli</data>
+      <data key="d9">Panathur to Kadubeesanahalli East Arterial</data>
+      <data key="d10">950</data>
+      <data key="d11">40.0</data>
+      <data key="d12">40.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">75.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6995, 12.929], [77.6955, 12.9355]]</data>
+    </edge>
+    <edge source="node_gear_school_cross" target="node_sakra_junction" id="0">
+      <data key="d8">edge_gear_school_to_sakra</data>
+      <data key="d9">Gear School Road to Sakra Hospital Elevated Link</data>
+      <data key="d10">1250</data>
+      <data key="d11">45.0</data>
+      <data key="d12">45.0</data>
+      <data key="d13">False</data>
+      <data key="d14">False</data>
+      <data key="d15">999.0</data>
+      <data key="d16">False</data>
+      <data key="d17">[[77.6768, 12.9312], [77.6805, 12.9305], [77.6838, 12.9288], [77.6875, 12.9282]]</data>
+    </edge>
+    <data key="d0">Bengaluru Bellandur ORR Critical Traffic &amp; Emergency Network</data>
+    <data key="d1">EPSG:4326</data>
+  </graph>
+</graphml>

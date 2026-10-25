@@ -1,0 +1,481 @@
+timestamp,sensor_id,corridor_name,segment_start,segment_end,flow_rate_pcu_hr,avg_speed_kmh,free_flow_speed_kmh,congestion_index,occupancy_percentage,incident_detected
+2026-10-11 00:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1781,54.1,60.0,0.29,27.5,NONE
+2026-10-11 00:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,825,47.0,60.0,0.16,35.8,NONE
+2026-10-11 00:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1505,45.4,60.0,0.22,30.1,NONE
+2026-10-11 00:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1417,44.2,60.0,0.32,23.3,NONE
+2026-10-11 00:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,669,50.0,60.0,0.27,24.6,NONE
+2026-10-11 01:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1111,48.7,60.0,0.28,25.9,NONE
+2026-10-11 01:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1751,46.8,60.0,0.25,30.3,NONE
+2026-10-11 01:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,715,56.8,60.0,0.16,40.7,NONE
+2026-10-11 01:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1326,51.1,60.0,0.3,39.7,NONE
+2026-10-11 01:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1825,55.9,60.0,0.35,20.5,NONE
+2026-10-11 02:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1450,43.0,60.0,0.21,27.8,NONE
+2026-10-11 02:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1323,51.1,60.0,0.22,39.2,NONE
+2026-10-11 02:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,840,44.7,60.0,0.28,19.8,NONE
+2026-10-11 02:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1650,42.4,60.0,0.17,39.6,NONE
+2026-10-11 02:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1440,46.5,60.0,0.17,32.8,NONE
+2026-10-11 03:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,793,49.3,60.0,0.2,15.3,NONE
+2026-10-11 03:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1319,55.8,60.0,0.21,19.2,NONE
+2026-10-11 03:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,876,44.1,60.0,0.22,35.1,NONE
+2026-10-11 03:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1446,57.3,60.0,0.32,18.5,NONE
+2026-10-11 03:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1071,47.0,60.0,0.31,32.9,NONE
+2026-10-11 04:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,975,51.7,60.0,0.34,30.9,NONE
+2026-10-11 04:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1679,53.5,60.0,0.23,20.4,NONE
+2026-10-11 04:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,942,49.1,60.0,0.31,31.3,NONE
+2026-10-11 04:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1155,50.4,60.0,0.33,38.7,NONE
+2026-10-11 04:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1592,49.4,60.0,0.13,17.5,NONE
+2026-10-11 05:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1584,47.5,60.0,0.31,36.4,NONE
+2026-10-11 05:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1450,51.8,60.0,0.31,19.7,NONE
+2026-10-11 05:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1160,44.9,60.0,0.26,26.7,NONE
+2026-10-11 05:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1437,56.6,60.0,0.16,30.4,NONE
+2026-10-11 05:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1455,53.2,60.0,0.13,38.9,NONE
+2026-10-11 06:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,973,46.4,60.0,0.26,22.9,NONE
+2026-10-11 06:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,786,53.2,60.0,0.29,20.9,NONE
+2026-10-11 06:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1660,48.6,60.0,0.3,18.3,NONE
+2026-10-11 06:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1405,43.2,60.0,0.14,35.7,NONE
+2026-10-11 06:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1317,48.6,60.0,0.16,20.6,NONE
+2026-10-11 07:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,741,49.4,60.0,0.14,33.8,NONE
+2026-10-11 07:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1595,48.1,60.0,0.29,38.1,NONE
+2026-10-11 07:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1462,42.6,60.0,0.18,34.1,NONE
+2026-10-11 07:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,929,47.2,60.0,0.29,28.1,NONE
+2026-10-11 07:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,789,43.3,60.0,0.27,34.3,NONE
+2026-10-11 08:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3048,15.7,60.0,0.76,81.0,NONE
+2026-10-11 08:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2774,10.8,60.0,0.92,87.3,WATERLOGGED_CHOKEPOINT
+2026-10-11 08:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2727,20.4,60.0,0.68,66.5,NONE
+2026-10-11 08:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3381,14.1,60.0,0.65,73.4,NONE
+2026-10-11 08:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2782,16.6,60.0,0.61,77.8,NONE
+2026-10-11 09:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2821,19.3,60.0,0.61,77.1,NONE
+2026-10-11 09:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3135,9.3,60.0,0.93,96.7,WATERLOGGED_CHOKEPOINT
+2026-10-11 09:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2999,22.3,60.0,0.69,76.4,NONE
+2026-10-11 09:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2649,23.3,60.0,0.75,82.6,NONE
+2026-10-11 09:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2983,24.9,60.0,0.64,65.3,NONE
+2026-10-11 10:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2628,25.9,60.0,0.67,68.7,NONE
+2026-10-11 10:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3285,5.0,60.0,0.97,86.3,WATERLOGGED_CHOKEPOINT
+2026-10-11 10:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3450,22.0,60.0,0.74,65.8,NONE
+2026-10-11 10:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3124,15.3,60.0,0.67,75.7,NONE
+2026-10-11 10:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2794,21.5,60.0,0.79,72.5,NONE
+2026-10-11 11:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3038,15.4,60.0,0.64,71.8,NONE
+2026-10-11 11:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2777,4.6,60.0,0.92,85.2,WATERLOGGED_CHOKEPOINT
+2026-10-11 11:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2817,19.5,60.0,0.61,80.5,NONE
+2026-10-11 11:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3265,21.5,60.0,0.61,81.8,NONE
+2026-10-11 11:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3020,17.6,60.0,0.72,83.7,NONE
+2026-10-11 12:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,858,53.4,60.0,0.3,39.9,NONE
+2026-10-11 12:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1815,44.7,60.0,0.34,31.2,NONE
+2026-10-11 12:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1445,52.8,60.0,0.34,33.7,NONE
+2026-10-11 12:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1330,44.8,60.0,0.3,33.6,NONE
+2026-10-11 12:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1637,43.1,60.0,0.12,39.6,NONE
+2026-10-11 13:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1569,48.1,60.0,0.27,21.3,NONE
+2026-10-11 13:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,677,45.7,60.0,0.26,39.2,NONE
+2026-10-11 13:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1282,45.8,60.0,0.22,21.6,NONE
+2026-10-11 13:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,812,43.0,60.0,0.21,23.0,NONE
+2026-10-11 13:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,960,48.0,60.0,0.27,21.4,NONE
+2026-10-11 14:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1558,53.8,60.0,0.2,22.5,NONE
+2026-10-11 14:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,731,50.3,60.0,0.34,32.5,NONE
+2026-10-11 14:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1240,54.0,60.0,0.17,34.8,NONE
+2026-10-11 14:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1351,45.9,60.0,0.24,39.5,NONE
+2026-10-11 14:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1158,54.8,60.0,0.28,21.0,NONE
+2026-10-11 15:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1431,50.3,60.0,0.16,32.0,NONE
+2026-10-11 15:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,782,55.9,60.0,0.14,20.2,NONE
+2026-10-11 15:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,939,57.0,60.0,0.15,19.7,NONE
+2026-10-11 15:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1774,55.3,60.0,0.33,21.4,NONE
+2026-10-11 15:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,810,48.8,60.0,0.23,19.4,NONE
+2026-10-11 16:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1054,45.9,60.0,0.16,21.7,NONE
+2026-10-11 16:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1234,51.2,60.0,0.34,20.4,NONE
+2026-10-11 16:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1635,43.3,60.0,0.34,25.8,NONE
+2026-10-11 16:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,993,49.5,60.0,0.22,31.5,NONE
+2026-10-11 16:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1537,54.2,60.0,0.31,36.4,NONE
+2026-10-11 17:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2620,23.1,60.0,0.69,66.6,NONE
+2026-10-11 17:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2907,9.0,60.0,0.84,94.4,WATERLOGGED_CHOKEPOINT
+2026-10-11 17:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2863,18.6,60.0,0.66,70.4,NONE
+2026-10-11 17:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3175,21.3,60.0,0.61,67.6,NONE
+2026-10-11 17:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3080,16.3,60.0,0.78,65.1,NONE
+2026-10-11 18:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3112,22.8,60.0,0.67,72.7,NONE
+2026-10-11 18:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3025,11.6,60.0,0.98,89.9,WATERLOGGED_CHOKEPOINT
+2026-10-11 18:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3101,17.7,60.0,0.8,66.4,NONE
+2026-10-11 18:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2639,25.9,60.0,0.62,82.7,NONE
+2026-10-11 18:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2766,16.3,60.0,0.69,69.8,NONE
+2026-10-11 19:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3369,22.7,60.0,0.7,74.3,NONE
+2026-10-11 19:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3305,7.3,60.0,0.83,90.0,WATERLOGGED_CHOKEPOINT
+2026-10-11 19:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3034,22.8,60.0,0.65,65.7,NONE
+2026-10-11 19:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3432,18.3,60.0,0.74,65.5,NONE
+2026-10-11 19:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3281,21.7,60.0,0.65,73.7,NONE
+2026-10-11 20:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3297,15.8,60.0,0.65,76.0,NONE
+2026-10-11 20:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3278,10.8,60.0,0.82,95.0,WATERLOGGED_CHOKEPOINT
+2026-10-11 20:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3259,22.5,60.0,0.68,78.4,NONE
+2026-10-11 20:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2682,20.2,60.0,0.64,73.0,NONE
+2026-10-11 20:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3449,19.1,60.0,0.74,74.5,NONE
+2026-10-11 21:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3145,21.9,60.0,0.68,70.9,NONE
+2026-10-11 21:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3021,10.1,60.0,0.97,96.3,WATERLOGGED_CHOKEPOINT
+2026-10-11 21:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2711,21.6,60.0,0.76,71.5,NONE
+2026-10-11 21:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2746,17.2,60.0,0.64,79.2,NONE
+2026-10-11 21:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3315,17.7,60.0,0.8,80.5,NONE
+2026-10-11 22:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,653,43.5,60.0,0.3,26.3,NONE
+2026-10-11 22:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1503,52.5,60.0,0.29,19.6,NONE
+2026-10-11 22:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1417,45.0,60.0,0.15,28.1,NONE
+2026-10-11 22:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1679,57.2,60.0,0.22,37.0,NONE
+2026-10-11 22:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1030,45.2,60.0,0.29,36.8,NONE
+2026-10-11 23:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1042,46.1,60.0,0.33,26.0,NONE
+2026-10-11 23:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,873,55.9,60.0,0.16,22.9,NONE
+2026-10-11 23:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1423,44.0,60.0,0.13,15.8,NONE
+2026-10-11 23:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1130,49.6,60.0,0.27,17.7,NONE
+2026-10-11 23:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,775,46.3,60.0,0.34,33.0,NONE
+2026-10-12 00:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,735,43.5,60.0,0.24,15.2,NONE
+2026-10-12 00:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1715,57.8,60.0,0.3,40.2,NONE
+2026-10-12 00:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1619,54.1,60.0,0.26,24.1,NONE
+2026-10-12 00:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1352,58.0,60.0,0.31,40.4,NONE
+2026-10-12 00:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1466,48.1,60.0,0.13,24.6,NONE
+2026-10-12 01:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1326,54.9,60.0,0.12,38.5,NONE
+2026-10-12 01:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1472,53.6,60.0,0.32,18.7,NONE
+2026-10-12 01:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,901,55.9,60.0,0.18,33.9,NONE
+2026-10-12 01:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1159,47.9,60.0,0.26,32.8,NONE
+2026-10-12 01:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1623,50.2,60.0,0.27,15.1,NONE
+2026-10-12 02:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1309,42.3,60.0,0.2,16.2,NONE
+2026-10-12 02:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1316,52.8,60.0,0.17,28.1,NONE
+2026-10-12 02:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,816,47.6,60.0,0.34,40.4,NONE
+2026-10-12 02:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1625,57.8,60.0,0.32,39.4,NONE
+2026-10-12 02:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1438,46.7,60.0,0.16,18.9,NONE
+2026-10-12 03:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1715,56.0,60.0,0.3,34.3,NONE
+2026-10-12 03:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,715,44.0,60.0,0.3,23.1,NONE
+2026-10-12 03:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1773,57.8,60.0,0.23,39.2,NONE
+2026-10-12 03:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,886,49.7,60.0,0.24,21.6,NONE
+2026-10-12 03:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,999,54.1,60.0,0.27,17.4,NONE
+2026-10-12 04:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1540,57.9,60.0,0.13,40.1,NONE
+2026-10-12 04:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1318,56.4,60.0,0.3,21.0,NONE
+2026-10-12 04:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1177,52.7,60.0,0.34,33.1,NONE
+2026-10-12 04:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,928,56.8,60.0,0.27,28.3,NONE
+2026-10-12 04:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1331,56.0,60.0,0.33,35.7,NONE
+2026-10-12 05:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,782,52.3,60.0,0.21,34.4,NONE
+2026-10-12 05:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1431,52.5,60.0,0.3,41.1,NONE
+2026-10-12 05:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1544,54.9,60.0,0.17,18.1,NONE
+2026-10-12 05:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,829,43.8,60.0,0.2,31.0,NONE
+2026-10-12 05:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1035,53.9,60.0,0.15,24.9,NONE
+2026-10-12 06:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1291,57.3,60.0,0.25,15.0,NONE
+2026-10-12 06:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,776,51.4,60.0,0.16,25.5,NONE
+2026-10-12 06:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1517,47.1,60.0,0.2,33.3,NONE
+2026-10-12 06:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,908,50.3,60.0,0.26,21.0,NONE
+2026-10-12 06:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1459,42.1,60.0,0.32,23.5,NONE
+2026-10-12 07:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1257,55.4,60.0,0.23,27.3,NONE
+2026-10-12 07:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1230,44.3,60.0,0.27,36.6,NONE
+2026-10-12 07:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,720,51.6,60.0,0.19,41.7,NONE
+2026-10-12 07:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,902,46.4,60.0,0.31,30.5,NONE
+2026-10-12 07:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1091,49.9,60.0,0.28,25.2,NONE
+2026-10-12 08:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3429,18.0,60.0,0.77,69.0,NONE
+2026-10-12 08:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3350,11.5,60.0,0.86,94.6,WATERLOGGED_CHOKEPOINT
+2026-10-12 08:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3394,16.1,60.0,0.7,72.4,NONE
+2026-10-12 08:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3434,21.9,60.0,0.77,83.8,NONE
+2026-10-12 08:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3161,18.7,60.0,0.68,74.0,NONE
+2026-10-12 09:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2956,23.1,60.0,0.68,75.0,NONE
+2026-10-12 09:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2889,6.6,60.0,0.97,94.1,WATERLOGGED_CHOKEPOINT
+2026-10-12 09:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3161,18.7,60.0,0.63,79.3,NONE
+2026-10-12 09:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3194,24.4,60.0,0.61,82.8,NONE
+2026-10-12 09:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2911,19.5,60.0,0.63,67.6,NONE
+2026-10-12 10:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3312,19.8,60.0,0.78,69.0,NONE
+2026-10-12 10:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3423,10.1,60.0,0.94,85.1,WATERLOGGED_CHOKEPOINT
+2026-10-12 10:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3343,24.3,60.0,0.62,79.9,NONE
+2026-10-12 10:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2751,18.5,60.0,0.8,77.9,NONE
+2026-10-12 10:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2772,25.1,60.0,0.62,83.5,NONE
+2026-10-12 11:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2783,25.3,60.0,0.62,74.8,NONE
+2026-10-12 11:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2946,9.0,60.0,0.98,93.2,WATERLOGGED_CHOKEPOINT
+2026-10-12 11:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3013,16.9,60.0,0.62,72.5,NONE
+2026-10-12 11:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2909,22.3,60.0,0.79,77.4,NONE
+2026-10-12 11:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2984,23.3,60.0,0.8,77.7,NONE
+2026-10-12 12:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,833,54.4,60.0,0.32,32.6,NONE
+2026-10-12 12:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1213,52.1,60.0,0.22,15.3,NONE
+2026-10-12 12:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,888,43.3,60.0,0.23,33.1,NONE
+2026-10-12 12:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1693,45.6,60.0,0.25,41.7,NONE
+2026-10-12 12:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1632,46.4,60.0,0.29,36.4,NONE
+2026-10-12 13:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1020,48.1,60.0,0.35,34.0,NONE
+2026-10-12 13:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1261,51.1,60.0,0.14,16.7,NONE
+2026-10-12 13:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1750,45.0,60.0,0.31,15.5,NONE
+2026-10-12 13:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1788,55.1,60.0,0.3,29.3,NONE
+2026-10-12 13:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,780,50.3,60.0,0.25,34.3,NONE
+2026-10-12 14:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,904,54.1,60.0,0.17,32.8,NONE
+2026-10-12 14:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,890,44.9,60.0,0.26,19.9,NONE
+2026-10-12 14:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1786,49.2,60.0,0.19,16.1,NONE
+2026-10-12 14:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1827,45.3,60.0,0.16,30.2,NONE
+2026-10-12 14:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,721,43.4,60.0,0.15,23.1,NONE
+2026-10-12 15:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1764,44.7,60.0,0.34,32.8,NONE
+2026-10-12 15:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1158,46.8,60.0,0.34,29.0,NONE
+2026-10-12 15:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1250,52.5,60.0,0.22,30.6,NONE
+2026-10-12 15:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1290,50.4,60.0,0.35,24.5,NONE
+2026-10-12 15:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1752,50.2,60.0,0.28,32.9,NONE
+2026-10-12 16:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,741,45.8,60.0,0.16,23.1,NONE
+2026-10-12 16:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1090,57.3,60.0,0.26,20.8,NONE
+2026-10-12 16:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1385,46.4,60.0,0.29,26.4,NONE
+2026-10-12 16:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1776,46.1,60.0,0.21,39.4,NONE
+2026-10-12 16:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1469,49.3,60.0,0.34,33.3,NONE
+2026-10-12 17:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3311,15.7,60.0,0.64,77.0,NONE
+2026-10-12 17:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2875,12.0,60.0,0.93,87.5,WATERLOGGED_CHOKEPOINT
+2026-10-12 17:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2981,20.8,60.0,0.73,74.7,NONE
+2026-10-12 17:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2767,19.0,60.0,0.63,83.9,NONE
+2026-10-12 17:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3044,18.5,60.0,0.79,69.7,NONE
+2026-10-12 18:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2876,15.5,60.0,0.62,75.4,NONE
+2026-10-12 18:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2667,7.0,60.0,0.83,96.8,WATERLOGGED_CHOKEPOINT
+2026-10-12 18:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3396,17.3,60.0,0.77,69.3,NONE
+2026-10-12 18:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2610,15.2,60.0,0.8,69.2,NONE
+2026-10-12 18:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2707,23.4,60.0,0.62,75.0,NONE
+2026-10-12 19:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2913,21.1,60.0,0.76,66.8,NONE
+2026-10-12 19:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2957,9.8,60.0,0.96,92.2,WATERLOGGED_CHOKEPOINT
+2026-10-12 19:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3222,15.2,60.0,0.61,71.0,NONE
+2026-10-12 19:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3369,18.7,60.0,0.67,79.1,NONE
+2026-10-12 19:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3407,20.4,60.0,0.72,81.1,NONE
+2026-10-12 20:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3088,21.1,60.0,0.65,78.0,NONE
+2026-10-12 20:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3330,5.7,60.0,0.84,89.9,WATERLOGGED_CHOKEPOINT
+2026-10-12 20:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3353,17.2,60.0,0.78,77.1,NONE
+2026-10-12 20:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2979,22.5,60.0,0.65,76.6,NONE
+2026-10-12 20:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3323,19.5,60.0,0.69,71.7,NONE
+2026-10-12 21:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3079,20.0,60.0,0.66,73.1,NONE
+2026-10-12 21:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3335,11.1,60.0,0.95,89.0,WATERLOGGED_CHOKEPOINT
+2026-10-12 21:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2689,25.4,60.0,0.68,70.9,NONE
+2026-10-12 21:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2692,21.6,60.0,0.62,69.6,NONE
+2026-10-12 21:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2695,16.0,60.0,0.61,79.1,NONE
+2026-10-12 22:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1784,56.9,60.0,0.31,15.3,NONE
+2026-10-12 22:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1518,52.8,60.0,0.33,18.7,NONE
+2026-10-12 22:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1669,50.2,60.0,0.35,39.0,NONE
+2026-10-12 22:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,905,48.5,60.0,0.26,39.6,NONE
+2026-10-12 22:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,664,53.4,60.0,0.28,35.2,NONE
+2026-10-12 23:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1150,57.9,60.0,0.27,39.9,NONE
+2026-10-12 23:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1731,52.9,60.0,0.13,27.1,NONE
+2026-10-12 23:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,995,52.8,60.0,0.32,29.1,NONE
+2026-10-12 23:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1110,44.8,60.0,0.2,18.6,NONE
+2026-10-12 23:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1373,57.2,60.0,0.22,25.2,NONE
+2026-10-13 00:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1414,57.5,60.0,0.2,33.3,NONE
+2026-10-13 00:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1754,55.6,60.0,0.32,22.8,NONE
+2026-10-13 00:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1639,46.7,60.0,0.17,34.9,NONE
+2026-10-13 00:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1814,48.3,60.0,0.33,40.1,NONE
+2026-10-13 00:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1705,55.2,60.0,0.13,27.5,NONE
+2026-10-13 01:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1649,42.9,60.0,0.12,27.4,NONE
+2026-10-13 01:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1261,47.7,60.0,0.12,39.0,NONE
+2026-10-13 01:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1031,48.4,60.0,0.12,26.6,NONE
+2026-10-13 01:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1054,43.4,60.0,0.24,19.2,NONE
+2026-10-13 01:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,903,56.6,60.0,0.12,35.8,NONE
+2026-10-13 02:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1162,45.6,60.0,0.21,23.1,NONE
+2026-10-13 02:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1527,56.3,60.0,0.24,22.3,NONE
+2026-10-13 02:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1548,52.5,60.0,0.22,18.8,NONE
+2026-10-13 02:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1538,42.1,60.0,0.32,34.1,NONE
+2026-10-13 02:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,876,45.0,60.0,0.13,25.7,NONE
+2026-10-13 03:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1328,56.4,60.0,0.16,20.4,NONE
+2026-10-13 03:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1631,57.4,60.0,0.35,18.2,NONE
+2026-10-13 03:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1651,50.8,60.0,0.3,34.3,NONE
+2026-10-13 03:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1315,54.0,60.0,0.3,25.8,NONE
+2026-10-13 03:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1446,44.1,60.0,0.34,36.4,NONE
+2026-10-13 04:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,908,44.5,60.0,0.24,35.7,NONE
+2026-10-13 04:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1134,42.8,60.0,0.31,26.6,NONE
+2026-10-13 04:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,666,48.9,60.0,0.19,28.1,NONE
+2026-10-13 04:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1528,46.0,60.0,0.16,28.8,NONE
+2026-10-13 04:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1160,46.5,60.0,0.15,22.1,NONE
+2026-10-13 05:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1156,52.7,60.0,0.22,27.8,NONE
+2026-10-13 05:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,861,53.2,60.0,0.24,19.9,NONE
+2026-10-13 05:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,954,45.7,60.0,0.15,16.0,NONE
+2026-10-13 05:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1043,56.9,60.0,0.22,31.6,NONE
+2026-10-13 05:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,836,55.8,60.0,0.21,29.2,NONE
+2026-10-13 06:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1123,45.5,60.0,0.22,16.7,NONE
+2026-10-13 06:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1524,52.3,60.0,0.19,22.3,NONE
+2026-10-13 06:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1224,57.1,60.0,0.28,21.7,NONE
+2026-10-13 06:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,747,44.9,60.0,0.12,32.8,NONE
+2026-10-13 06:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1308,45.4,60.0,0.23,39.5,NONE
+2026-10-13 07:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,856,48.9,60.0,0.18,28.3,NONE
+2026-10-13 07:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1334,46.9,60.0,0.14,15.4,NONE
+2026-10-13 07:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1780,54.3,60.0,0.15,24.7,NONE
+2026-10-13 07:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1390,53.9,60.0,0.26,31.3,NONE
+2026-10-13 07:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1137,52.4,60.0,0.17,25.4,NONE
+2026-10-13 08:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2708,15.6,60.0,0.75,67.3,NONE
+2026-10-13 08:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3200,11.8,60.0,0.96,95.6,WATERLOGGED_CHOKEPOINT
+2026-10-13 08:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2797,22.5,60.0,0.79,66.4,NONE
+2026-10-13 08:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3159,21.4,60.0,0.66,74.0,NONE
+2026-10-13 08:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3379,16.4,60.0,0.74,65.8,NONE
+2026-10-13 09:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2796,19.0,60.0,0.74,81.9,NONE
+2026-10-13 09:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3377,10.9,60.0,0.97,97.7,WATERLOGGED_CHOKEPOINT
+2026-10-13 09:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2974,19.4,60.0,0.74,82.3,NONE
+2026-10-13 09:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2669,19.8,60.0,0.7,83.1,NONE
+2026-10-13 09:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3409,14.3,60.0,0.72,78.2,NONE
+2026-10-13 10:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2732,17.5,60.0,0.79,66.2,NONE
+2026-10-13 10:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3310,5.9,60.0,0.95,91.4,WATERLOGGED_CHOKEPOINT
+2026-10-13 10:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3145,24.4,60.0,0.79,68.1,NONE
+2026-10-13 10:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3368,20.1,60.0,0.71,72.4,NONE
+2026-10-13 10:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3221,17.3,60.0,0.64,68.0,NONE
+2026-10-13 11:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2823,21.1,60.0,0.6,82.6,NONE
+2026-10-13 11:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3125,7.9,60.0,0.93,91.8,WATERLOGGED_CHOKEPOINT
+2026-10-13 11:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2910,24.2,60.0,0.66,70.1,NONE
+2026-10-13 11:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2721,16.1,60.0,0.61,69.5,NONE
+2026-10-13 11:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2640,21.7,60.0,0.79,70.3,NONE
+2026-10-13 12:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,922,46.3,60.0,0.3,32.3,NONE
+2026-10-13 12:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1159,57.8,60.0,0.17,18.1,NONE
+2026-10-13 12:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1361,52.1,60.0,0.34,23.8,NONE
+2026-10-13 12:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1774,46.2,60.0,0.15,39.3,NONE
+2026-10-13 12:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1253,47.2,60.0,0.13,37.0,NONE
+2026-10-13 13:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1378,45.5,60.0,0.34,19.8,NONE
+2026-10-13 13:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,682,50.6,60.0,0.35,36.0,NONE
+2026-10-13 13:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1844,43.7,60.0,0.29,25.3,NONE
+2026-10-13 13:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1177,55.9,60.0,0.27,29.9,NONE
+2026-10-13 13:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1555,45.5,60.0,0.18,30.7,NONE
+2026-10-13 14:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1459,44.5,60.0,0.17,34.6,NONE
+2026-10-13 14:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1404,44.4,60.0,0.23,28.4,NONE
+2026-10-13 14:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1590,45.0,60.0,0.32,20.1,NONE
+2026-10-13 14:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1654,57.1,60.0,0.16,22.6,NONE
+2026-10-13 14:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1285,44.6,60.0,0.16,25.6,NONE
+2026-10-13 15:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1034,43.1,60.0,0.14,21.6,NONE
+2026-10-13 15:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1474,43.6,60.0,0.24,34.6,NONE
+2026-10-13 15:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,674,51.7,60.0,0.21,15.6,NONE
+2026-10-13 15:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,677,54.2,60.0,0.27,16.2,NONE
+2026-10-13 15:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1158,54.3,60.0,0.18,40.3,NONE
+2026-10-13 16:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,677,54.7,60.0,0.12,36.4,NONE
+2026-10-13 16:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1760,53.8,60.0,0.2,34.1,NONE
+2026-10-13 16:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1064,44.2,60.0,0.29,39.1,NONE
+2026-10-13 16:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,984,46.9,60.0,0.23,21.6,NONE
+2026-10-13 16:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1763,53.1,60.0,0.26,18.3,NONE
+2026-10-13 17:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3444,14.5,60.0,0.71,66.9,NONE
+2026-10-13 17:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3025,5.6,60.0,0.97,85.3,WATERLOGGED_CHOKEPOINT
+2026-10-13 17:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3037,18.6,60.0,0.67,70.5,NONE
+2026-10-13 17:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3300,18.6,60.0,0.78,80.6,NONE
+2026-10-13 17:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2715,19.9,60.0,0.8,69.3,NONE
+2026-10-13 18:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2888,18.3,60.0,0.72,67.2,NONE
+2026-10-13 18:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2686,11.2,60.0,0.92,87.3,WATERLOGGED_CHOKEPOINT
+2026-10-13 18:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3143,18.0,60.0,0.64,73.1,NONE
+2026-10-13 18:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3283,22.2,60.0,0.72,70.5,NONE
+2026-10-13 18:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2706,17.3,60.0,0.7,72.0,NONE
+2026-10-13 19:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2871,23.7,60.0,0.74,66.5,NONE
+2026-10-13 19:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2602,11.0,60.0,0.98,95.1,WATERLOGGED_CHOKEPOINT
+2026-10-13 19:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2750,17.8,60.0,0.68,78.7,NONE
+2026-10-13 19:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3404,25.7,60.0,0.76,67.2,NONE
+2026-10-13 19:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3037,25.5,60.0,0.66,66.7,NONE
+2026-10-13 20:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2730,16.2,60.0,0.68,71.1,NONE
+2026-10-13 20:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3034,8.1,60.0,0.98,92.8,WATERLOGGED_CHOKEPOINT
+2026-10-13 20:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3251,18.0,60.0,0.76,77.4,NONE
+2026-10-13 20:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2851,18.6,60.0,0.71,75.2,NONE
+2026-10-13 20:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3104,20.4,60.0,0.76,72.3,NONE
+2026-10-13 21:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3194,22.6,60.0,0.71,79.8,NONE
+2026-10-13 21:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3430,10.1,60.0,0.93,88.1,WATERLOGGED_CHOKEPOINT
+2026-10-13 21:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2602,16.4,60.0,0.77,71.9,NONE
+2026-10-13 21:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3085,25.5,60.0,0.78,66.1,NONE
+2026-10-13 21:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2957,18.3,60.0,0.77,79.8,NONE
+2026-10-13 22:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,935,46.7,60.0,0.15,38.0,NONE
+2026-10-13 22:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1512,45.9,60.0,0.31,16.5,NONE
+2026-10-13 22:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,932,43.9,60.0,0.28,18.9,NONE
+2026-10-13 22:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,703,53.1,60.0,0.22,16.5,NONE
+2026-10-13 22:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,867,52.6,60.0,0.14,37.6,NONE
+2026-10-13 23:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,973,42.5,60.0,0.2,17.1,NONE
+2026-10-13 23:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,807,42.2,60.0,0.31,26.2,NONE
+2026-10-13 23:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1023,49.5,60.0,0.15,29.2,NONE
+2026-10-13 23:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1263,49.5,60.0,0.29,27.0,NONE
+2026-10-13 23:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,677,46.6,60.0,0.16,38.8,NONE
+2026-10-14 00:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,715,51.7,60.0,0.16,19.3,NONE
+2026-10-14 00:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1461,55.3,60.0,0.28,38.7,NONE
+2026-10-14 00:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1784,53.4,60.0,0.18,30.4,NONE
+2026-10-14 00:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1276,53.3,60.0,0.22,19.2,NONE
+2026-10-14 00:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,838,50.3,60.0,0.34,18.4,NONE
+2026-10-14 01:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1083,48.4,60.0,0.13,25.6,NONE
+2026-10-14 01:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1795,51.7,60.0,0.14,33.7,NONE
+2026-10-14 01:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1627,47.0,60.0,0.27,37.3,NONE
+2026-10-14 01:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,987,42.9,60.0,0.21,26.5,NONE
+2026-10-14 01:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1202,43.7,60.0,0.14,31.3,NONE
+2026-10-14 02:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1337,42.4,60.0,0.18,29.6,NONE
+2026-10-14 02:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,783,45.4,60.0,0.12,39.6,NONE
+2026-10-14 02:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1034,50.8,60.0,0.27,15.9,NONE
+2026-10-14 02:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1201,43.4,60.0,0.25,16.2,NONE
+2026-10-14 02:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1640,42.7,60.0,0.19,40.5,NONE
+2026-10-14 03:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,667,57.7,60.0,0.29,40.9,NONE
+2026-10-14 03:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1674,45.1,60.0,0.29,34.6,NONE
+2026-10-14 03:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,915,53.2,60.0,0.14,26.0,NONE
+2026-10-14 03:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1681,43.6,60.0,0.31,19.1,NONE
+2026-10-14 03:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1432,49.6,60.0,0.32,16.0,NONE
+2026-10-14 04:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,980,44.4,60.0,0.23,38.9,NONE
+2026-10-14 04:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,841,57.2,60.0,0.17,20.8,NONE
+2026-10-14 04:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,938,54.3,60.0,0.16,41.0,NONE
+2026-10-14 04:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1707,57.9,60.0,0.26,29.1,NONE
+2026-10-14 04:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1349,49.2,60.0,0.15,22.9,NONE
+2026-10-14 05:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1532,42.6,60.0,0.28,33.4,NONE
+2026-10-14 05:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1139,45.3,60.0,0.26,17.0,NONE
+2026-10-14 05:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,962,51.1,60.0,0.35,17.6,NONE
+2026-10-14 05:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,680,44.3,60.0,0.32,29.8,NONE
+2026-10-14 05:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,828,50.0,60.0,0.22,19.6,NONE
+2026-10-14 06:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1255,44.6,60.0,0.18,24.8,NONE
+2026-10-14 06:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,832,43.1,60.0,0.28,27.4,NONE
+2026-10-14 06:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1619,57.7,60.0,0.3,26.9,NONE
+2026-10-14 06:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,937,57.0,60.0,0.34,28.2,NONE
+2026-10-14 06:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1394,55.7,60.0,0.21,38.1,NONE
+2026-10-14 07:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,914,49.1,60.0,0.24,31.9,NONE
+2026-10-14 07:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1292,48.0,60.0,0.28,28.7,NONE
+2026-10-14 07:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1188,56.0,60.0,0.35,16.2,NONE
+2026-10-14 07:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,766,53.9,60.0,0.18,37.2,NONE
+2026-10-14 07:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,666,44.5,60.0,0.14,25.1,NONE
+2026-10-14 08:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3183,18.8,60.0,0.61,72.4,NONE
+2026-10-14 08:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3073,9.5,60.0,0.88,91.1,WATERLOGGED_CHOKEPOINT
+2026-10-14 08:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3147,24.8,60.0,0.69,66.6,NONE
+2026-10-14 08:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3349,15.3,60.0,0.79,72.5,NONE
+2026-10-14 08:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3043,16.4,60.0,0.67,71.0,NONE
+2026-10-14 09:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3218,19.8,60.0,0.74,74.0,NONE
+2026-10-14 09:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2885,7.9,60.0,0.91,97.3,WATERLOGGED_CHOKEPOINT
+2026-10-14 09:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2749,21.7,60.0,0.66,65.6,NONE
+2026-10-14 09:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3215,23.3,60.0,0.61,80.4,NONE
+2026-10-14 09:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3408,19.2,60.0,0.69,66.0,NONE
+2026-10-14 10:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2623,25.4,60.0,0.74,70.1,NONE
+2026-10-14 10:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3250,5.8,60.0,0.84,88.6,WATERLOGGED_CHOKEPOINT
+2026-10-14 10:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2683,17.6,60.0,0.74,81.6,NONE
+2026-10-14 10:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3137,16.6,60.0,0.78,68.5,NONE
+2026-10-14 10:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2655,15.1,60.0,0.78,71.5,NONE
+2026-10-14 11:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3371,17.6,60.0,0.64,82.9,NONE
+2026-10-14 11:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3093,8.1,60.0,0.93,87.1,WATERLOGGED_CHOKEPOINT
+2026-10-14 11:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3313,19.2,60.0,0.78,75.8,NONE
+2026-10-14 11:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3442,14.1,60.0,0.76,76.3,NONE
+2026-10-14 11:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2679,22.7,60.0,0.72,67.7,NONE
+2026-10-14 12:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1298,42.2,60.0,0.33,40.2,NONE
+2026-10-14 12:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1672,55.8,60.0,0.15,41.2,NONE
+2026-10-14 12:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1482,46.2,60.0,0.29,41.7,NONE
+2026-10-14 12:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,907,52.1,60.0,0.27,30.6,NONE
+2026-10-14 12:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,724,45.5,60.0,0.35,26.3,NONE
+2026-10-14 13:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1768,54.4,60.0,0.26,20.8,NONE
+2026-10-14 13:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1079,57.2,60.0,0.34,30.6,NONE
+2026-10-14 13:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,679,47.9,60.0,0.2,23.2,NONE
+2026-10-14 13:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1278,50.0,60.0,0.32,33.9,NONE
+2026-10-14 13:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1583,48.6,60.0,0.2,37.4,NONE
+2026-10-14 14:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1522,50.4,60.0,0.3,18.1,NONE
+2026-10-14 14:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1010,49.3,60.0,0.21,29.9,NONE
+2026-10-14 14:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,983,50.7,60.0,0.21,37.8,NONE
+2026-10-14 14:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1545,52.1,60.0,0.28,40.3,NONE
+2026-10-14 14:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,853,57.9,60.0,0.31,17.8,NONE
+2026-10-14 15:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,683,51.9,60.0,0.21,28.4,NONE
+2026-10-14 15:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1765,43.6,60.0,0.22,30.7,NONE
+2026-10-14 15:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,716,52.7,60.0,0.32,20.7,NONE
+2026-10-14 15:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1581,50.8,60.0,0.15,38.1,NONE
+2026-10-14 15:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,904,47.6,60.0,0.3,27.5,NONE
+2026-10-14 16:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1460,42.1,60.0,0.21,21.0,NONE
+2026-10-14 16:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1230,46.3,60.0,0.27,23.3,NONE
+2026-10-14 16:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1499,52.8,60.0,0.12,39.5,NONE
+2026-10-14 16:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,716,42.2,60.0,0.16,25.1,NONE
+2026-10-14 16:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1712,55.1,60.0,0.26,24.0,NONE
+2026-10-14 17:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3185,25.9,60.0,0.65,83.5,NONE
+2026-10-14 17:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2797,9.1,60.0,0.88,85.7,WATERLOGGED_CHOKEPOINT
+2026-10-14 17:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3191,19.1,60.0,0.79,72.4,NONE
+2026-10-14 17:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3345,16.1,60.0,0.78,74.8,NONE
+2026-10-14 17:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3047,16.8,60.0,0.74,67.4,NONE
+2026-10-14 18:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,2721,21.6,60.0,0.76,81.0,NONE
+2026-10-14 18:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3242,11.4,60.0,0.95,87.1,WATERLOGGED_CHOKEPOINT
+2026-10-14 18:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2930,16.4,60.0,0.62,73.3,NONE
+2026-10-14 18:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3243,23.2,60.0,0.63,76.7,NONE
+2026-10-14 18:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3156,25.0,60.0,0.62,72.3,NONE
+2026-10-14 19:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3360,22.8,60.0,0.8,77.1,NONE
+2026-10-14 19:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3396,7.2,60.0,0.86,96.7,WATERLOGGED_CHOKEPOINT
+2026-10-14 19:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2904,16.3,60.0,0.77,78.8,NONE
+2026-10-14 19:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,3426,23.4,60.0,0.75,77.5,NONE
+2026-10-14 19:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2881,15.0,60.0,0.63,65.4,NONE
+2026-10-14 20:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3193,24.4,60.0,0.62,82.6,NONE
+2026-10-14 20:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,2725,5.3,60.0,0.87,96.6,WATERLOGGED_CHOKEPOINT
+2026-10-14 20:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,2695,14.9,60.0,0.77,82.3,NONE
+2026-10-14 20:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2812,18.7,60.0,0.7,65.4,NONE
+2026-10-14 20:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,2675,19.8,60.0,0.73,69.0,NONE
+2026-10-14 21:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,3029,18.5,60.0,0.66,82.3,NONE
+2026-10-14 21:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,3427,5.7,60.0,0.87,96.7,WATERLOGGED_CHOKEPOINT
+2026-10-14 21:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,3275,20.8,60.0,0.72,65.6,NONE
+2026-10-14 21:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,2951,25.9,60.0,0.7,76.7,NONE
+2026-10-14 21:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,3159,14.1,60.0,0.7,69.8,NONE
+2026-10-14 22:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,899,45.1,60.0,0.13,15.6,NONE
+2026-10-14 22:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1698,54.2,60.0,0.17,24.9,NONE
+2026-10-14 22:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1094,42.5,60.0,0.15,17.3,NONE
+2026-10-14 22:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,909,46.3,60.0,0.23,40.7,NONE
+2026-10-14 22:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1363,53.3,60.0,0.27,27.6,NONE
+2026-10-14 23:00:00,CAM-ORR-01,Bellandur Outer Ring Road Arterial,Iblur Junction,Bellandur Gate,1665,49.0,60.0,0.34,39.9,NONE
+2026-10-14 23:00:00,CAM-ORR-04,Bellandur Outer Ring Road Arterial,Bellandur Underpass,Ecospace Gate 1,1162,44.8,60.0,0.28,39.0,NONE
+2026-10-14 23:00:00,CAM-ORR-08,Bellandur Outer Ring Road Arterial,Ecospace Gate 2,Devarabisanahalli Ramp,1225,57.4,60.0,0.14,36.4,NONE
+2026-10-14 23:00:00,CAM-ORR-12,Bellandur Outer Ring Road Arterial,Devarabisanahalli Flyover Ramp,Kadubeesanahalli Spine,1288,44.7,60.0,0.17,34.5,NONE
+2026-10-14 23:00:00,CAM-ORR-16,Bellandur Outer Ring Road Arterial,Kadubeesanahalli Spine,Marathahalli Bridge,1537,56.1,60.0,0.22,35.2,NONE

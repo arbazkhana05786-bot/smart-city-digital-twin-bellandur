@@ -1,0 +1,5 @@
+# Stub storage for surveillance drone imagery & CCTV snapshots (Bengaluru Bellandur ORR)
+# Future backend: S3 bucket or local blob storage
+# In Stage 1: Static mock samples used by Vision Detector.
+sample_drone_stream_1: "bellandur_underpass_waterlogging_cam04.jpg"
+sample_drone_stream_2: "ecospace_junction_traffic_cam12.jpg"

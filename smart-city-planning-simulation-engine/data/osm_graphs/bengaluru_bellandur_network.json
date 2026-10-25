@@ -1,0 +1,453 @@
+{
+  "network_name": "Bengaluru Bellandur ORR Critical Traffic & Emergency Network",
+  "crs": "EPSG:4326",
+  "generated_date": "2026-10-16",
+  "center": [12.9275, 77.6815],
+  "nodes": [
+    {
+      "id": "node_iblur",
+      "name": "Iblur Junction (Sarjapur-ORR)",
+      "lat": 12.9208,
+      "lon": 77.6655,
+      "elevation_m": 887.0,
+      "type": "major_intersection",
+      "signalized": true
+    },
+    {
+      "id": "node_bellandur_gate",
+      "name": "Bellandur Gate Junction",
+      "lat": 12.9235,
+      "lon": 77.6710,
+      "elevation_m": 884.2,
+      "type": "signal_node",
+      "signalized": true
+    },
+    {
+      "id": "node_bellandur_underpass",
+      "name": "Bellandur ORR Underpass (Low Elevation Inundation Point)",
+      "lat": 12.9262,
+      "lon": 77.6765,
+      "elevation_m": 878.0,
+      "type": "underpass_chokepoint",
+      "signalized": false
+    },
+    {
+      "id": "node_bellandur_flyover_crest",
+      "name": "Bellandur Main Flyover (Elevated)",
+      "lat": 12.9265,
+      "lon": 77.6770,
+      "elevation_m": 892.0,
+      "type": "elevated_flyover",
+      "signalized": false
+    },
+    {
+      "id": "node_ecospace_front",
+      "name": "Ecospace Business Park Entrance",
+      "lat": 12.9250,
+      "lon": 77.6842,
+      "elevation_m": 881.5,
+      "type": "tech_park_gateway",
+      "signalized": true
+    },
+    {
+      "id": "node_sakra_junction",
+      "name": "Sakra World Hospital Access Junction",
+      "lat": 12.9282,
+      "lon": 77.6875,
+      "elevation_m": 883.0,
+      "type": "hospital_access",
+      "signalized": true
+    },
+    {
+      "id": "node_devarabisanahalli",
+      "name": "Devarabisanahalli Flyover Base",
+      "lat": 12.9305,
+      "lon": 77.6905,
+      "elevation_m": 884.0,
+      "type": "major_intersection",
+      "signalized": true
+    },
+    {
+      "id": "node_kadubeesanahalli",
+      "name": "Kadubeesanahalli Junction (Underpass)",
+      "lat": 12.9355,
+      "lon": 77.6955,
+      "elevation_m": 882.5,
+      "type": "signal_node",
+      "signalized": true
+    },
+    {
+      "id": "node_marathahalli_bridge",
+      "name": "Marathahalli Multiplex & Bridge Hub",
+      "lat": 12.9550,
+      "lon": 77.7010,
+      "elevation_m": 886.0,
+      "type": "terminal_hub",
+      "signalized": true
+    },
+    {
+      "id": "node_sarjapur_road_mid",
+      "name": "Sarjapur Road / Kaikondrahalli Junction",
+      "lat": 12.9150,
+      "lon": 77.6720,
+      "elevation_m": 888.5,
+      "type": "detour_arterial",
+      "signalized": true
+    },
+    {
+      "id": "node_doddakannelli",
+      "name": "Doddakannelli Bypass Cross",
+      "lat": 12.9135,
+      "lon": 77.6890,
+      "elevation_m": 889.0,
+      "type": "detour_connector",
+      "signalized": false
+    },
+    {
+      "id": "node_panathur_link",
+      "name": "Panathur - Kadubeesanahalli Detour Connector",
+      "lat": 12.9290,
+      "lon": 77.6995,
+      "elevation_m": 886.0,
+      "type": "detour_arterial",
+      "signalized": true
+    },
+    {
+      "id": "node_kaikondrahalli_ground",
+      "name": "Kaikondrahalli Lake Safe Assembly Grounds",
+      "lat": 12.9125,
+      "lon": 77.6740,
+      "elevation_m": 889.5,
+      "type": "evacuation_assembly",
+      "signalized": false
+    },
+    {
+      "id": "node_bellandur_sports_ground",
+      "name": "Bellandur Community Sports Ground",
+      "lat": 12.9320,
+      "lon": 77.6710,
+      "elevation_m": 887.0,
+      "type": "evacuation_assembly",
+      "signalized": false
+    },
+    {
+      "id": "node_gear_school_cross",
+      "name": "Gear School Road North Apex (Elevated Bypass)",
+      "lat": 12.9312,
+      "lon": 77.6768,
+      "elevation_m": 894.0,
+      "type": "elevated_bypass_apex",
+      "signalized": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_iblur_to_bellandur_gate",
+      "source": "node_iblur",
+      "target": "node_bellandur_gate",
+      "name": "ORR Arterial (Iblur to Bellandur Gate)",
+      "distance_m": 750,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 999.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6655, 12.9208],
+        [77.6710, 12.9235]
+      ]
+    },
+    {
+      "id": "edge_iblur_to_bellandur_underpass",
+      "source": "node_iblur",
+      "target": "node_bellandur_underpass",
+      "name": "ORR Service Road (via Bellandur Underpass)",
+      "distance_m": 1250,
+      "base_speed_kmh": 40.0,
+      "current_speed_kmh": 40.0,
+      "is_service_road": true,
+      "vulnerable_to_flood": true,
+      "flood_threshold_rainfall_mm": 45.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6655, 12.9208],
+        [77.6710, 12.9235],
+        [77.6765, 12.9262]
+      ]
+    },
+    {
+      "id": "edge_bellandur_flyover_elevated",
+      "source": "node_iblur",
+      "target": "node_ecospace_front",
+      "name": "ORR Main Elevated Flyover (Flood Resistant)",
+      "distance_m": 2100,
+      "base_speed_kmh": 55.0,
+      "current_speed_kmh": 55.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 999.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6655, 12.9208],
+        [77.6705, 12.9235],
+        [77.6712, 12.9278],
+        [77.6740, 12.9304],
+        [77.6768, 12.9312],
+        [77.6805, 12.9305],
+        [77.6838, 12.9288],
+        [77.6855, 12.9270],
+        [77.6842, 12.9250]
+      ]
+    },
+    {
+      "id": "edge_underpass_to_ecospace",
+      "source": "node_bellandur_underpass",
+      "target": "node_ecospace_front",
+      "name": "Bellandur Service Road to Ecospace",
+      "distance_m": 850,
+      "base_speed_kmh": 35.0,
+      "current_speed_kmh": 35.0,
+      "is_service_road": true,
+      "vulnerable_to_flood": true,
+      "flood_threshold_rainfall_mm": 40.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6765, 12.9262],
+        [77.6800, 12.9256],
+        [77.6842, 12.9250]
+      ]
+    },
+    {
+      "id": "edge_ecospace_to_sakra",
+      "source": "node_ecospace_front",
+      "target": "node_sakra_junction",
+      "name": "ORR Ecospace to Sakra Hospital Access",
+      "distance_m": 450,
+      "base_speed_kmh": 40.0,
+      "current_speed_kmh": 40.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 80.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6842, 12.9250],
+        [77.6875, 12.9282]
+      ]
+    },
+    {
+      "id": "edge_sakra_to_devarabisanahalli",
+      "source": "node_sakra_junction",
+      "target": "node_devarabisanahalli",
+      "name": "ORR Sakra to Devarabisanahalli Flyover",
+      "distance_m": 420,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 85.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6875, 12.9282],
+        [77.6905, 12.9305]
+      ]
+    },
+    {
+      "id": "edge_devarabisanahalli_to_kadubeesanahalli",
+      "source": "node_devarabisanahalli",
+      "target": "node_kadubeesanahalli",
+      "name": "ORR Devarabisanahalli to Kadubeesanahalli",
+      "distance_m": 780,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 70.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6905, 12.9305],
+        [77.6955, 12.9355]
+      ]
+    },
+    {
+      "id": "edge_kadubeesanahalli_to_marathahalli",
+      "source": "node_kadubeesanahalli",
+      "target": "node_marathahalli_bridge",
+      "name": "ORR Kadubeesanahalli to Marathahalli Hub",
+      "distance_m": 2200,
+      "base_speed_kmh": 50.0,
+      "current_speed_kmh": 50.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 90.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6955, 12.9355],
+        [77.6980, 12.9450],
+        [77.7010, 12.9550]
+      ]
+    },
+    {
+      "id": "edge_sarjapur_bypass_corridor",
+      "source": "node_iblur",
+      "target": "node_sarjapur_road_mid",
+      "name": "Sarjapur Road Bypass Corridor Link 1",
+      "distance_m": 1100,
+      "base_speed_kmh": 42.0,
+      "current_speed_kmh": 42.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 95.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6655, 12.9208],
+        [77.6685, 12.9175],
+        [77.6720, 12.9150]
+      ]
+    },
+    {
+      "id": "edge_sarjapur_to_kaikondrahalli",
+      "source": "node_sarjapur_road_mid",
+      "target": "node_kaikondrahalli_ground",
+      "name": "Sarjapur Road to Kaikondrahalli Safe Hub / Manipal Access",
+      "distance_m": 350,
+      "base_speed_kmh": 40.0,
+      "current_speed_kmh": 40.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 999.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6720, 12.9150],
+        [77.6740, 12.9125]
+      ]
+    },
+    {
+      "id": "edge_sarjapur_to_doddakannelli",
+      "source": "node_sarjapur_road_mid",
+      "target": "node_doddakannelli",
+      "name": "Sarjapur Road to Doddakannelli",
+      "distance_m": 1900,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 90.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6720, 12.9150],
+        [77.6800, 12.9140],
+        [77.6890, 12.9135]
+      ]
+    },
+    {
+      "id": "edge_doddakannelli_to_panathur",
+      "source": "node_doddakannelli",
+      "target": "node_panathur_link",
+      "name": "Carmelaram - Panathur Detour Road",
+      "distance_m": 2100,
+      "base_speed_kmh": 38.0,
+      "current_speed_kmh": 38.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 80.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6890, 12.9135],
+        [77.6940, 12.9210],
+        [77.6995, 12.9290]
+      ]
+    },
+    {
+      "id": "edge_panathur_to_kadubeesanahalli",
+      "source": "node_panathur_link",
+      "target": "node_kadubeesanahalli",
+      "name": "Panathur to Kadubeesanahalli East Arterial",
+      "distance_m": 950,
+      "base_speed_kmh": 40.0,
+      "current_speed_kmh": 40.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 75.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6995, 12.9290],
+        [77.6955, 12.9355]
+      ]
+    },
+    {
+      "id": "edge_evac_ecospace_to_kaikondrahalli",
+      "source": "node_ecospace_front",
+      "target": "node_kaikondrahalli_ground",
+      "name": "Emergency Evacuation Route to Kaikondrahalli Ground",
+      "distance_m": 1850,
+      "base_speed_kmh": 30.0,
+      "current_speed_kmh": 30.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 70.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6842, 12.9250],
+        [77.6780, 12.9200],
+        [77.6740, 12.9125]
+      ]
+    },
+    {
+      "id": "edge_evac_bellandur_to_sports",
+      "source": "node_bellandur_gate",
+      "target": "node_bellandur_sports_ground",
+      "name": "Evacuation Path to Bellandur Sports Ground",
+      "distance_m": 920,
+      "base_speed_kmh": 28.0,
+      "current_speed_kmh": 28.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 65.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6710, 12.9235],
+        [77.6700, 12.9280],
+        [77.6710, 12.9320]
+      ]
+    },
+    {
+      "id": "edge_bellandur_to_gear_school",
+      "source": "node_bellandur_gate",
+      "target": "node_gear_school_cross",
+      "name": "Elevated Flyover Ramp to Gear School Bypass",
+      "distance_m": 1150,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 999.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6710, 12.9235],
+        [77.6712, 12.9278],
+        [77.6740, 12.9304],
+        [77.6768, 12.9312]
+      ]
+    },
+    {
+      "id": "edge_gear_school_to_sakra",
+      "source": "node_gear_school_cross",
+      "target": "node_sakra_junction",
+      "name": "Gear School Road to Sakra Hospital Elevated Link",
+      "distance_m": 1250,
+      "base_speed_kmh": 45.0,
+      "current_speed_kmh": 45.0,
+      "is_service_road": false,
+      "vulnerable_to_flood": false,
+      "flood_threshold_rainfall_mm": 999.0,
+      "is_blocked": false,
+      "path_coords": [
+        [77.6768, 12.9312],
+        [77.6805, 12.9305],
+        [77.6838, 12.9288],
+        [77.6875, 12.9282]
+      ]
+    }
+  ]
+}

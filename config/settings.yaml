@@ -1,0 +1,43 @@
+# Smart City Planning & Simulation Engine Settings
+project:
+  name: "Smart City Planning & Simulation Engine (Bengaluru Base)"
+  version: "1.0.0-stage1-frontend"
+  region: "Bengaluru, Karnataka, India"
+  primary_focus: "Outer Ring Road (ORR) - Bellandur - Devarabisanahalli Corridor"
+
+map:
+  default_center:
+    lat: 12.9275
+    lon: 77.6815
+  default_zoom: 14.4
+  default_pitch: 50.0
+  default_bearing: -20.0
+  theme_background: "#0F172A"
+
+colors:
+  dark_obsidian: "#0B0F19"
+  dark_slate: "#161F30"
+  surface_slate: "#1E293B"
+  safety_amber: "#F59E0B"
+  crimson_alert: "#EF4444"
+  emerald_route: "#10B981"
+  impassable_red: [239, 68, 68, 220]
+  ems_green: [16, 185, 129, 230]
+  flood_amber: [245, 158, 11, 200]
+  flood_blue: [30, 144, 255, 170]
+  fire_amber: [249, 115, 22, 180]
+  seismic_purple: [168, 85, 247, 200]
+  normal_route: [148, 163, 184, 180]
+
+simulation_defaults:
+  rainfall_mm: 15.0
+  wind_speed_kmh: 12.0
+  wind_direction_deg: 45
+  earthquake_magnitude: 0.0
+  intersection_speed_kmh: 40.0
+
+citizen_portal:
+  grievance_portal_name: "BBMP Sahaaya 2.0"
+  grievance_url: "https://bbmp.gov.in"
+  swachhata_url: "https://swachhatah-mohua.gov.in"
+  emergency_helpline: "112 / 108"

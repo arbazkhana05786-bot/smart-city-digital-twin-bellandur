@@ -1,0 +1,54 @@
+# Disaster Simulation Rules & Thresholds (Bengaluru Bellandur / ORR Corridor)
+flood_rules:
+  warning_rainfall_mm: 35.0
+  critical_rainfall_mm: 65.0
+  elevation_cutoff_meters: 882.0 # Bellandur depression zone elevation threshold
+  inundation_rate_factor: 0.045
+  impassable_water_depth_cm: 25.0
+  critical_nodes:
+    - id: "node_bellandur_underpass"
+      name: "Bellandur ORR Underpass (Service Road)"
+      elevation: 878.5
+      auto_block_water_depth_cm: 20.0
+    - id: "node_ecospace_entrance"
+      name: "Ecospace Tech Park Gateway"
+      elevation: 880.2
+      auto_block_water_depth_cm: 30.0
+
+fire_rules:
+  default_spread_rate_m_per_min: 15.0
+  wind_speed_multiplier: 1.8
+  evacuation_buffer_radius_m: 450
+  high_risk_zones:
+    - id: "zone_ecospace_annex"
+      name: "Ecospace IT Corridor Block A-D"
+      default_occupancy: 4200
+    - id: "zone_bellandur_commercial"
+      name: "Bellandur Central Hub"
+      default_occupancy: 2800
+
+seismic_rules:
+  felt_magnitude_threshold: 3.5
+  structural_warning_magnitude: 5.0
+  structural_collapse_risk_magnitude: 6.2
+  jitter_frequency_hz: 8.5
+  assembly_shelters:
+    - name: "Kaikondrahalli Lake Open Grounds"
+      capacity: 5000
+      lat: 12.9125
+      lon: 77.6740
+    - name: "Bellandur Community Sports Ground"
+      capacity: 3500
+      lat: 12.9320
+      lon: 77.6710
+    - name: "Sarjapur Iblur Military Ground Reserve"
+      capacity: 12000
+      lat: 12.9230
+      lon: 77.6590
+
+ems_corridor:
+  speed_drop_threshold_kmh: 12.0
+  detour_trigger_penalty_factor: 4.5
+  priority_vehicles:
+    - "Ambulance EMS-108"
+    - "Fire Brigade Engine-7"

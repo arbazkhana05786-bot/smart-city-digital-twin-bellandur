@@ -1,0 +1,6 @@
+# MOCK WEIGHT STUB: YOLOv8 Flood & Debris Detection Model
+# Note: Stage 1 Frontend Only - Real training pipeline deferred to Backend/ML stages.
+MODEL_NAME: "yolov8_flood_debris_bengaluru"
+CHECKPOINT_HASH: "e2b4c8a991f421dae6c80a221f73b641"
+CLASSES: ["waterlogging", "submerged_vehicle", "fallen_tree", "road_fissure", "structural_smoke"]
+ACCURACY_MOCK: 0.942

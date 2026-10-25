@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="description" content="Bengaluru Smart City Rapid Citizen Incident & Hazard Reporting PWA">
+  <title>Smart City Citizen Portal — Bengaluru Bellandur / ORR</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="mobile-container">
+    <!-- Top Bar -->
+    <header class="app-header">
+      <div class="header-branding">
+        <div class="badge-live-pulse"></div>
+        <div>
+          <h1 class="header-title">BLR HazardPulse</h1>
+          <p class="header-sub">Bellandur & ORR Emergency Command Service</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="corridor-badge">ORR Zone 4</span>
+      </div>
+    </header>
+
+    <!-- Emergency Banner -->
+    <div class="status-banner" id="statusBanner">
+      <span class="pulse-dot"></span>
+      <span id="bannerText">Monitored Corridor: Bellandur Underpass & Ecospace Gate Active</span>
+    </div>
+
+    <!-- Main 3-Tap Incident Form -->
+    <main class="report-card">
+      <div class="section-title-wrap">
+        <span class="step-badge">Quick Report</span>
+        <h2 class="section-title">Report Hazard in 3 Taps</h2>
+        <p class="section-desc">Instantly alert emergency responders and the BBMP Central Hub.</p>
+      </div>
+
+      <!-- Auto-Geolocation Bar -->
+      <div class="geo-strip" id="geoStrip">
+        <div class="geo-icon">📍</div>
+        <div class="geo-details">
+          <div class="geo-status" id="geoStatus">Detecting GPS Location...</div>
+          <div class="geo-coords" id="geoCoords">12.9262° N, 77.6765° E (Bellandur Underpass)</div>
+        </div>
+        <button type="button" class="geo-refresh-btn" id="refreshGeoBtn" title="Refresh GPS">🔄</button>
+      </div>
+
+      <form id="incidentForm" autocomplete="off">
+        <!-- Tap 1: Instant Camera Capture / Upload Trigger -->
+        <div class="form-step">
+          <label class="step-label">
+            <span class="step-number">1</span> Tap to Snap or Upload Hazard Image
+          </label>
+          <div class="camera-trigger" id="cameraTrigger">
+            <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;">
+            <div class="camera-placeholder" id="cameraPlaceholder">
+              <div class="cam-icon">📸</div>
+              <div class="cam-prompt">Tap for instant camera capture</div>
+              <div class="cam-sub">Edge AI will auto-detect flood depth & road blocks</div>
+            </div>
+            <div class="image-preview-wrap" id="imagePreviewWrap" style="display: none;">
+              <img id="imagePreview" src="" alt="Captured hazard photo">
+              <button type="button" class="remove-photo-btn" id="removePhotoBtn">✕ Change</button>
+              <div class="ai-tag-overlay" id="aiTagOverlay">🤖 AI Detecting...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tap 2: Emoji Category Chips -->
+        <div class="form-step">
+          <label class="step-label">
+            <span class="step-number">2</span> Select Hazard Category
+          </label>
+          <div class="chip-grid" id="categoryGrid">
+            <button type="button" class="category-chip active" data-category="waterlogging" data-emoji="💧">
+              <span class="chip-emoji">💧</span>
+              <span class="chip-title">Waterlogging</span>
+              <span class="chip-hint">>20cm Underpass</span>
+            </button>
+            <button type="button" class="category-chip" data-category="road_block" data-emoji="🛑">
+              <span class="chip-emoji">🛑</span>
+              <span class="chip-title">Road Blockage</span>
+              <span class="chip-hint">Debris / Fallen Tree</span>
+            </button>
+            <button type="button" class="category-chip" data-category="ems_obstruction" data-emoji="🚑">
+              <span class="chip-emoji">🚑</span>
+              <span class="chip-title">EMS Obstructed</span>
+              <span class="chip-hint">Ambulance Choke</span>
+            </button>
+            <button type="button" class="category-chip" data-category="fire_hazard" data-emoji="🔥">
+              <span class="chip-emoji">🔥</span>
+              <span class="chip-title">Fire / Smoke</span>
+              <span class="chip-hint">IT Park / Dry Lake</span>
+            </button>
+            <button type="button" class="category-chip" data-category="structural_crack" data-emoji="🏚️">
+              <span class="chip-emoji">🏚️</span>
+              <span class="chip-title">Structural Crack</span>
+              <span class="chip-hint">Flyover / Building</span>
+            </button>
+            <button type="button" class="category-chip" data-category="gridlock" data-emoji="🚗">
+              <span class="chip-emoji">🚗</span>
+              <span class="chip-title">Deadlock (0 km/h)</span>
+              <span class="chip-hint">Sudden stoppage</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional Brief Note -->
+        <div class="form-step compact">
+          <label class="step-label" for="incidentNotes">
+            <span class="optional-pill">Optional</span> Landmark / Specifics
+          </label>
+          <input type="text" id="incidentNotes" class="text-input" placeholder="e.g. Near Ecospace skywalk / Service road submerged">
+        </div>
+
+        <!-- Tap 3: RED Submit Call To Action -->
+        <div class="form-step submit-step">
+          <button type="submit" class="btn-submit-emergency" id="submitBtn">
+            <span class="btn-icon">🚨</span>
+            <span class="btn-text">SUBMIT EMERGENCY ALERT</span>
+          </button>
+          <div class="submit-disclaimer">Instant telemetry piped to BBMP Emergency Command Dashboard</div>
+        </div>
+      </form>
+    </main>
+
+    <!-- Active Tickets Stream (Simulated Local Feed) -->
+    <section class="live-tickets-section">
+      <div class="section-header">
+        <h3 class="subsection-title">Recent Community Reports</h3>
+        <span class="live-counter" id="ticketCount">3 Active</span>
+      </div>
+      <div class="tickets-container" id="ticketsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Administrative Grievance Handoff Card -->
+    <footer class="gov-handoff-card">
+      <div class="gov-card-header">
+        <span class="gov-badge">Official Administrative Portals</span>
+        <h4 class="gov-title">Civic Grievance & Swachhata Redirection</h4>
+      </div>
+      <p class="gov-desc">
+        For non-emergency municipal issues (garbage dumps, streetlights, property tax grievances),
+        please use dedicated official state services:
+      </p>
+      <div class="gov-links-grid">
+        <a href="https://bbmp.gov.in" target="_blank" rel="noopener noreferrer" class="gov-link-btn">
+          <span class="gov-link-icon">🏛️</span>
+          <div class="gov-link-texts">
+            <span class="gov-link-name">BBMP Sahaaya 2.0</span>
+            <span class="gov-link-sub">Citizen Grievance Redressal</span>
+          </div>
+          <span class="gov-arrow">↗</span>
+        </a>
+        <a href="https://swachhatah-mohua.gov.in" target="_blank" rel="noopener noreferrer" class="gov-link-btn">
+          <span class="gov-link-icon">🧹</span>
+          <div class="gov-link-texts">
+            <span class="gov-link-name">Swachhata-MoHUA</span>
+            <span class="gov-link-sub">Sanitation & Civic Cleanliness</span>
+          </div>
+          <span class="gov-arrow">↗</span>
+        </a>
+        <a href="tel:112" class="gov-link-btn hotline-btn">
+          <span class="gov-link-icon">📞</span>
+          <div class="gov-link-texts">
+            <span class="gov-link-name">Dial 112 / 108</span>
+            <span class="gov-link-sub">Karnataka Emergency Hotline</span>
+          </div>
+          <span class="gov-arrow">☎</span>
+        </a>
+      </div>
+      <div class="gov-footer-note">
+        Bengaluru Smart City Planning & Simulation Engine • Stage 1 Interactive PWA
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification Modal -->
+  <div class="toast-modal" id="toastModal">
+    <div class="toast-content">
+      <div class="toast-icon" id="toastIcon">✅</div>
+      <div class="toast-texts">
+        <div class="toast-title" id="toastTitle">Alert Broadcasted!</div>
+        <div class="toast-msg" id="toastMsg">Ticket #BLR-8921 dispatched to BBMP Command Hub.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

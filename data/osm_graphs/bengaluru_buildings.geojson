@@ -1,0 +1,486 @@
+{
+  "type": "FeatureCollection",
+  "name": "Bengaluru_Bellandur_ORR_Buildings",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_ecospace_t1",
+        "name": "Ecospace Campus 1A - Tech Tower",
+        "height": 48.0,
+        "elevation": 881.5,
+        "floors": 12,
+        "type": "commercial_office",
+        "occupancy": 3200,
+        "structural_risk": "low"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6828,
+              12.924
+            ],
+            [
+              77.6842,
+              12.924
+            ],
+            [
+              77.6842,
+              12.9255
+            ],
+            [
+              77.6828,
+              12.9255
+            ],
+            [
+              77.6828,
+              12.924
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_ecospace_t2",
+        "name": "Ecospace Campus 2B",
+        "height": 55.0,
+        "elevation": 881.8,
+        "floors": 14,
+        "type": "commercial_office",
+        "occupancy": 4100,
+        "structural_risk": "medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6846,
+              12.9238
+            ],
+            [
+              77.6862,
+              12.9238
+            ],
+            [
+              77.6862,
+              12.9253
+            ],
+            [
+              77.6846,
+              12.9253
+            ],
+            [
+              77.6846,
+              12.9238
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_ecoworld_t1",
+        "name": "RMZ Ecoworld Tower 4A",
+        "height": 62.0,
+        "elevation": 882.5,
+        "floors": 16,
+        "type": "commercial_office",
+        "occupancy": 4500,
+        "structural_risk": "low"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6868,
+              12.922
+            ],
+            [
+              77.6888,
+              12.922
+            ],
+            [
+              77.6888,
+              12.9238
+            ],
+            [
+              77.6868,
+              12.9238
+            ],
+            [
+              77.6868,
+              12.922
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_ecoworld_t2",
+        "name": "RMZ Ecoworld The Bay Club",
+        "height": 32.0,
+        "elevation": 882.2,
+        "floors": 8,
+        "type": "commercial_office",
+        "occupancy": 2200,
+        "structural_risk": "low"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6892,
+              12.9215
+            ],
+            [
+              77.6912,
+              12.9215
+            ],
+            [
+              77.6912,
+              12.9232
+            ],
+            [
+              77.6892,
+              12.9232
+            ],
+            [
+              77.6892,
+              12.9215
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_sakra_hospital",
+        "name": "Sakra World Hospital (Critical Medical Node)",
+        "height": 36.0,
+        "elevation": 883.0,
+        "floors": 9,
+        "type": "hospital",
+        "occupancy": 1500,
+        "structural_risk": "priority_critical"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6865,
+              12.928
+            ],
+            [
+              77.6882,
+              12.928
+            ],
+            [
+              77.6882,
+              12.9298
+            ],
+            [
+              77.6865,
+              12.9298
+            ],
+            [
+              77.6865,
+              12.928
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_green_glen_residence",
+        "name": "Green Glen Residential Hub",
+        "height": 28.0,
+        "elevation": 883.5,
+        "floors": 7,
+        "type": "residential",
+        "occupancy": 950,
+        "structural_risk": "medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.674,
+              12.928
+            ],
+            [
+              77.6758,
+              12.928
+            ],
+            [
+              77.6758,
+              12.9295
+            ],
+            [
+              77.674,
+              12.9295
+            ],
+            [
+              77.674,
+              12.928
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_bellandur_lakeview",
+        "name": "Bellandur Lakeview Apartments (Low Depression Zone)",
+        "height": 24.0,
+        "elevation": 879.0,
+        "floors": 6,
+        "type": "residential",
+        "occupancy": 820,
+        "structural_risk": "high"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.673,
+              12.925
+            ],
+            [
+              77.6748,
+              12.925
+            ],
+            [
+              77.6748,
+              12.9265
+            ],
+            [
+              77.673,
+              12.9265
+            ],
+            [
+              77.673,
+              12.925
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_devarabisanahalli_tech",
+        "name": "Devarabisanahalli Tech Hub Block C",
+        "height": 44.0,
+        "elevation": 884.0,
+        "floors": 11,
+        "type": "commercial_office",
+        "occupancy": 2900,
+        "structural_risk": "low"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6915,
+              12.93
+            ],
+            [
+              77.6932,
+              12.93
+            ],
+            [
+              77.6932,
+              12.9318
+            ],
+            [
+              77.6915,
+              12.9318
+            ],
+            [
+              77.6915,
+              12.93
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_kadubeesanahalli_tower",
+        "name": "Prestige Tech Park Horizon",
+        "height": 58.0,
+        "elevation": 883.2,
+        "floors": 15,
+        "type": "commercial_office",
+        "occupancy": 3800,
+        "structural_risk": "medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6948,
+              12.934
+            ],
+            [
+              77.697,
+              12.934
+            ],
+            [
+              77.697,
+              12.936
+            ],
+            [
+              77.6948,
+              12.936
+            ],
+            [
+              77.6948,
+              12.934
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_emergency_fire_substation",
+        "name": "Bellandur EMS & Fire Response Substation",
+        "height": 14.0,
+        "elevation": 885.0,
+        "floors": 3,
+        "type": "emergency_service",
+        "occupancy": 65,
+        "structural_risk": "low"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6695,
+              12.922
+            ],
+            [
+              77.671,
+              12.922
+            ],
+            [
+              77.671,
+              12.9232
+            ],
+            [
+              77.6695,
+              12.9232
+            ],
+            [
+              77.6695,
+              12.922
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_intel_campus",
+        "name": "Intel Campus Block 3",
+        "height": 52.0,
+        "elevation": 883.0,
+        "floors": 13,
+        "type": "commercial_office",
+        "occupancy": 3500,
+        "structural_risk": "medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6895,
+              12.9238
+            ],
+            [
+              77.6915,
+              12.9238
+            ],
+            [
+              77.6915,
+              12.9255
+            ],
+            [
+              77.6895,
+              12.9255
+            ],
+            [
+              77.6895,
+              12.9238
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bldg_bellandur_commercial",
+        "name": "Bellandur Commercial Complex",
+        "height": 38.0,
+        "elevation": 882.0,
+        "floors": 9,
+        "type": "commercial_office",
+        "occupancy": 2100,
+        "structural_risk": "medium"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.677,
+              12.924
+            ],
+            [
+              77.679,
+              12.924
+            ],
+            [
+              77.679,
+              12.9258
+            ],
+            [
+              77.677,
+              12.9258
+            ],
+            [
+              77.677,
+              12.924
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
