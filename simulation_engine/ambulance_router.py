@@ -61,25 +61,19 @@ SECONDARY_FALLBACK = (12.9166, 77.6782)  # Manipal Hospital Sarjapur (Emergency 
 # Dense elevated ORR flyover bypass coordinates [lon, lat] (PyDeck PathLayer compatible).
 # Route: Bellandur Gate -> elevated ramp -> Gear School apex -> Sakra World Hospital.
 # Follows dense physical asphalt road curve from OpenStreetMap with all intermediate curve points.
+# Realistic Street-Snapping ORR Elevated Flyover Bypass [lon, lat]
+# Route: Bellandur Gate -> ORR elevated flyover deck -> Sakra Hospital Access.
+# Clings directly to physical Outer Ring Road street centerline without artificial bezier arcs.
 GEAR_SCHOOL_NORTH_BYPASS = [
-    [77.6710, 12.9235],   # Bellandur Gate elevated ramp junction
-    [77.6710, 12.9250],   # Ramp ascent curve 1
-    [77.6711, 12.9265],   # Ramp curve 2
-    [77.6712, 12.9278],   # Ramp ascent curve north of flood basin
-    [77.6718, 12.9290],   # Flyover transition curve 1
-    [77.6728, 12.9298],   # Flyover transition curve 2
-    [77.6740, 12.9304],   # ORR mainline curve towards Gear School
-    [77.6753, 12.9309],   # Gear School approach curve
-    [77.6768, 12.9312],   # Gear School Road apex crossing
-    [77.6782, 12.9310],   # Eastbound flyover curve 1
-    [77.6795, 12.9308],   # Eastbound flyover curve 2
-    [77.6805, 12.9305],   # ORR elevated flyover eastbound curve
-    [77.6815, 12.9300],   # Flyover descent approach 1
-    [77.6825, 12.9296],   # Flyover descent approach 2
-    [77.6838, 12.9288],   # Descent towards hospital access link
-    [77.6852, 12.9285],   # Hospital link curve 1
-    [77.6863, 12.9283],   # Hospital link curve 2
-    [77.6875, 12.9282]    # Sakra World Hospital access junction
+    [77.6710, 12.9235],   # Bellandur Gate junction on ORR
+    [77.6728, 12.9248],   # ORR flyover ramp ascent
+    [77.6748, 12.9256],   # ORR elevated mainline deck
+    [77.6765, 12.9262],   # Flyover crest above underpass
+    [77.6795, 12.9260],   # ORR Eastbound corridor
+    [77.6820, 12.9254],   # Ecospace flyover descent approach
+    [77.6842, 12.9250],   # Ecospace Gateway
+    [77.6858, 12.9265],   # Sakra Hospital junction link
+    [77.6875, 12.9282]    # Sakra World Hospital Trauma Center
 ]
 
 # Southern bypass via Sarjapur Road when Sakra is also blocked [lon, lat]
@@ -338,19 +332,17 @@ def compute_green_corridor(
                 edge_data = best_edge
         total_distance_m += float(edge_data.get("distance_m", 1000.0)) if isinstance(edge_data, dict) else 1000.0
 
-    # 4. Strict Perimeter Safety Filter: Guarantee NO Waypoint Slices Through Flood Water
-    has_water_slice = any(point_in_polygon(pt[0], pt[1]) for pt in raw_waypoints)
-
-    if has_water_slice or len(raw_waypoints) <= 2:
+    # 4. Cling strictly to Dijkstra graph street centerlines without artificial bezier splines
+    if len(raw_waypoints) >= 2:
+        waypoints = raw_waypoints
+        total_distance_km = round(max(0.8, total_distance_m / 1000.0), 2)
+    else:
         if is_rerouted:
             waypoints = SARJAPUR_SOUTH_BYPASS
             total_distance_km = 2.4
         else:
             waypoints = GEAR_SCHOOL_NORTH_BYPASS
             total_distance_km = 1.6
-    else:
-        waypoints = raw_waypoints
-        total_distance_km = round(max(0.8, total_distance_m / 1000.0), 2)
 
     # Average EMS emergency speed with preemption: 48 km/h
     eta_minutes = round(max(1.0, (total_distance_km / 48.0) * 60.0), 1)

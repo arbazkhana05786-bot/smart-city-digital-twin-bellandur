@@ -187,14 +187,16 @@ TARGET_ROAD_SEGMENTS = {
         ],
         "bypass_path": [
             [77.6710, 12.9235],
-            [77.6712, 12.9278],
-            [77.6740, 12.9304],
-            [77.6768, 12.9312],
-            [77.6805, 12.9305],
-            [77.6838, 12.9288],
+            [77.6728, 12.9248],
+            [77.6748, 12.9256],
+            [77.6765, 12.9262],
+            [77.6795, 12.9260],
+            [77.6820, 12.9254],
+            [77.6842, 12.9250],
+            [77.6858, 12.9265],
             [77.6875, 12.9282]
         ],
-        "bypass_name": "RECALCULATED BYPASS: Bellandur Elevated Flyover & Gear School Road to Sakra Hospital"
+        "bypass_name": "RECALCULATED BYPASS: Bellandur Elevated Flyover & ORR Mainline to Sakra Hospital"
     },
     "Ecospace Gate 2": {
         "blocked_path": [
@@ -203,11 +205,10 @@ TARGET_ROAD_SEGMENTS = {
             [77.6875, 12.9282]
         ],
         "bypass_path": [
-            [77.6705, 12.9235],
-            [77.6712, 12.9278],
-            [77.6740, 12.9304],
-            [77.6768, 12.9312],
-            [77.6820, 12.9300],
+            [77.6800, 12.9256],
+            [77.6820, 12.9254],
+            [77.6842, 12.9250],
+            [77.6858, 12.9265],
             [77.6875, 12.9282]
         ],
         "bypass_name": "RECALCULATED BYPASS: Outer Service Lane Diverter via Ecospace North"
@@ -219,9 +220,10 @@ TARGET_ROAD_SEGMENTS = {
         ],
         "bypass_path": [
             [77.6842, 12.9250],
+            [77.6858, 12.9265],
             [77.6875, 12.9282],
-            [77.6860, 12.9320],
-            [77.6955, 12.9355]
+            [77.6910, 12.9295],
+            [77.6955, 12.9315]
         ],
         "bypass_name": "RECALCULATED BYPASS: At-Grade Ground Diverter to Kadubeesanahalli"
     },
@@ -232,9 +234,11 @@ TARGET_ROAD_SEGMENTS = {
         ],
         "bypass_path": [
             [77.6655, 12.9208],
+            [77.6665, 12.9195],
             [77.6685, 12.9175],
             [77.6720, 12.9150],
-            [77.6770, 12.9265],
+            [77.6770, 12.9205],
+            [77.6820, 12.9254],
             [77.6875, 12.9282]
         ],
         "bypass_name": "RECALCULATED BYPASS: Kaikondrahalli Arterial Diverter to ORR Mainline"
@@ -1894,10 +1898,18 @@ else:
             if mode == "DISASTER_EARTHQUAKE" and current_quake_mag >= 6.0:
                 green_corridor["waypoints"] = [
                     [77.6710, 12.9235],
+                    [77.6700, 12.9230],
+                    [77.6685, 12.9222],
+                    [77.6672, 12.9215],
+                    [77.6655, 12.9208],
+                    [77.6665, 12.9195],
+                    [77.6675, 12.9182],
                     [77.6685, 12.9175],
+                    [77.6700, 12.9162],
+                    [77.6710, 12.9153],
                     [77.6720, 12.9150],
-                    [77.6740, 12.9125],
-                    [77.6782, 12.9166]
+                    [77.6740, 12.9135],
+                    [77.6740, 12.9125]
                 ]
                 green_corridor["path_coords"] = green_corridor["waypoints"]
                 green_corridor["hospital_name"] = "Kaikondrahalli Lake Grounds (Perimeter Assembly Hub)"
@@ -1936,22 +1948,87 @@ else:
             layers = []
 
             # ─────────────────────────────────────────────────────────────
-            # LAYER 0 — Raster Basemap TileLayer (Carto Dark Matter)
-            # map_provider=None + map_style=None means PyDeck renders a
-            # transparent canvas; this TileLayer IS the basemap.
-            # coordinate_system=LNGLAT is mandatory to prevent tile
-            # frustum clipping (pitch-black void) at any camera pitch > 0°.
+            # LAYER 0a — Satellite Imagery Basemap (ESRI World Imagery)
+            # High-resolution satellite raster tiles fetched directly by the browser.
+            # Zero token required — ESRI ArcGIS Online tiles are openly accessible.
             # ─────────────────────────────────────────────────────────────
             layers.append(pdk.Layer(
                 "TileLayer",
-                id="raster-basemap",
-                data="https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+                id="satellite-basemap",
+                data="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 min_zoom=0,
                 max_zoom=19,
                 tile_size=256,
                 opacity=1.0,
                 coordinate_system=pdk.CoordinateSystem.LNGLAT,
             ))
+
+            # ─────────────────────────────────────────────────────────────
+            # LAYER 0b — Road Labels & Place Names Overlay (ESRI World Boundaries)
+            # Semi-transparent overlay with street names and administrative labels
+            # ─────────────────────────────────────────────────────────────
+            layers.append(pdk.Layer(
+                "TileLayer",
+                id="satellite-labels",
+                data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+                min_zoom=0,
+                max_zoom=19,
+                tile_size=256,
+                opacity=0.85,
+                coordinate_system=pdk.CoordinateSystem.LNGLAT,
+            ))
+
+            # ─────────────────────────────────────────────────────────────
+            # LAYER 0c — Dense Road Skeleton Overlay (Real curved geometries)
+            # ─────────────────────────────────────────────────────────────
+            dense_net_file = PROJECT_ROOT / "data" / "bellandur_dense_network.json"
+            if not dense_net_file.exists():
+                dense_net_file = PROJECT_ROOT / "data" / "osm_graphs" / "bengaluru_bellandur_network.json"
+            dense_net_raw = {}
+            if dense_net_file.exists():
+                try:
+                    import json as _json
+                    with open(dense_net_file, "r", encoding="utf-8") as _dfh:
+                        dense_net_raw = _json.load(_dfh)
+                except Exception:
+                    pass
+
+            road_skeleton_paths = []
+            for _edge in dense_net_raw.get("edges", []):
+                _coords = _edge.get("coordinates") or _edge.get("path_coords", [])
+                if len(_coords) >= 2:
+                    _rn = _edge.get("name", "Road")
+                    _name_str = " ".join(str(x) for x in _rn) if isinstance(_rn, list) else str(_rn or "Road")
+                    _nl = _name_str.lower()
+                    road_skeleton_paths.append({
+                        "name":        _name_str,
+                        "path":        _coords,
+                        "type":        "Road Network Corridor",
+                        "status":      "BLOCKED" if _edge.get("is_blocked") else "CLEAR",
+                        "depth":       "Dense Asphalt Geometry",
+                        "hazard_info": " | Low-Elevation Risk" if _edge.get("vulnerable_to_flood") else "",
+                        "color": (
+                            [239, 68, 68, 200] if _edge.get("is_blocked") else
+                            [251, 191, 36, 190] if _edge.get("vulnerable_to_flood") else
+                            [56, 189, 248, 200] if ("flyover" in _nl or "elevated" in _nl) else
+                            [100, 116, 139, 180]
+                        ),
+                        "width": 6 if _edge.get("is_blocked") else 3,
+                    })
+
+            if road_skeleton_paths:
+                layers.append(pdk.Layer(
+                    "PathLayer",
+                    road_skeleton_paths,
+                    id="road-skeleton",
+                    get_path="path",
+                    get_color="color",
+                    get_width="width",
+                    width_min_pixels=1,
+                    width_max_pixels=7,
+                    pickable=True,
+                    rounded=True,
+                ))
 
             # ─────────────────────────────────────────────────────────────
             # LAYER 1 — 3D Extruded Buildings
@@ -1975,53 +2052,76 @@ else:
                     if b_type == "hospital" or "hospital" in b_name_lower or "sakra" in b_name_lower:
                         color     = [168, 85, 247, 230]
                         line_clr  = [216, 180, 254, 255]
+                        b_type_label = "Critical Medical Node"
+                        b_status_label = "OPERATIONAL — Trauma Priority Hub"
                     elif b_type == "emergency_service":
                         color     = [16, 185, 129, 220]
                         line_clr  = [52, 211, 153, 200]
+                        b_type_label = "Emergency Response Base"
+                        b_status_label = "DISPATCH READY"
                     elif mode == "DISASTER_FIRE":
                         if b_name == active_fire_bldg:
                             # Primary fire origin building: deep flaming crimson with active pulsing amber boundary
                             color     = [239, 68, 68, 240]
                             line_clr  = [251, 146, 60, 255]
+                            b_type_label = "Commercial Tech Park (Fire Origin)"
+                            b_status_label = "CRITICAL — Active Thermal Hazard"
                         elif secondary_spread_active and b_name == secondary_spread_bldg:
                             # Secondary spread logic: amber-orange to simulate fire spreading downwind
                             color     = [249, 115, 22, 220]
                             line_clr  = [251, 146, 60, 255]
+                            b_type_label = "Commercial Tech Park (Downwind Risk)"
+                            b_status_label = "WARNING — Downwind Thermal Exposure"
                         else:
                             # Non-affected tech towers: operational cyan/slate [30, 41, 59, 180]
                             color     = [30, 41, 59, 180]
                             line_clr  = [51, 65, 85, 255]
+                            b_type_label = "Commercial Tech Park"
+                            b_status_label = "Nominal"
                     elif mode == "DISASTER_EARTHQUAKE":
+                        b_type_label = "Commercial Tech Park" if b_type != "residential" else "Residential High-Rise"
                         if current_quake_mag < 3.5:
                             # Minor (M < 3.5): 0% structural damage, all buildings stable cyan
                             color     = [56, 189, 248, 180]
                             line_clr  = [125, 211, 252, 200]
+                            b_status_label = "Nominal — Stable"
                         elif 3.5 <= current_quake_mag < 6.0:
                             # Moderate (3.5 <= M < 6.0): Masonry crack warnings on medium/high risk
                             if props.get("structural_risk") in ["high", "medium"]:
                                 color     = [245, 158, 11, 210]
                                 line_clr  = [251, 191, 36, 255]
+                                b_status_label = "Structural Warning — Masonry Stress"
                             else:
                                 color     = [56, 189, 248, 180]
                                 line_clr  = [125, 211, 252, 160]
+                                b_status_label = "Nominal — Resilient"
                         else:
                             # Severe (M >= 6.0): Buildings along fault line turn deep collapse-red [220, 38, 38, 240]
                             color     = [220, 38, 38, 240]
                             line_clr  = [239, 68, 68, 255]
+                            b_status_label = "CRITICAL — Structural Collapse Hazard"
                     else:
                         if b_type == "residential":
                             color     = [100, 116, 139, 200]
                             line_clr  = [148, 163, 184, 140]
+                            b_type_label = "Residential High-Rise"
+                            b_status_label = "Nominal"
                         else:
                             color     = [56, 189, 248, 180]
                             line_clr  = [125, 211, 252, 160]
+                            b_type_label = "Commercial Tech Park"
+                            b_status_label = "Nominal"
 
                     bldg_data.append({
-                        "name":       b_name,
-                        "height":     props.get("height", 30.0) * 1.5,
-                        "color":      color,
-                        "line_color": line_clr,
-                        "polygon":    coords[0]
+                        "name":        b_name or "Building",
+                        "type":        b_type_label,
+                        "status":      b_status_label,
+                        "depth":       f"{int(props.get('occupancy', 1000))} occupants",
+                        "hazard_info": "",
+                        "height":      props.get("height", 30.0) * 1.5,
+                        "color":       color,
+                        "line_color":  line_clr,
+                        "polygon":     coords[0],
                     })
 
             layers.append(pdk.Layer(
@@ -2034,7 +2134,8 @@ else:
                 get_line_color="line_color",
                 line_width_min_pixels=1,
                 extruded=True,
-                pickable=True
+                pickable=True,
+                auto_highlight=True,
             ))
 
             # Check if Manual Human Override is active for this mode
@@ -2064,7 +2165,15 @@ else:
                 # Blocked road segment (Red/Amber)
                 layers.append(pdk.Layer(
                     "PathLayer",
-                    [{"path": target_info["blocked_path"], "color": block_color, "name": f"HUMAN OVERRIDE: {hazard_applied} at {target_name} ({sev_name})"}],
+                    [{
+                        "path":        target_info["blocked_path"],
+                        "color":       block_color,
+                        "name":        f"HUMAN OVERRIDE: {hazard_applied} at {target_name}",
+                        "type":        "Blocked Roadway Impasse",
+                        "status":      f"BLOCKED ({sev_name})",
+                        "depth":       "1.2 meters waterlogged" if mode == "DISASTER_FLOOD" else "Structural / Thermal Obstruction",
+                        "hazard_info": f" | Severity {sev_name}",
+                    }],
                     id="human-blocked-road",
                     get_path="path",
                     get_color="color",
@@ -2073,18 +2182,43 @@ else:
                 ))
 
                 # Dynamically recalculated green corridor route using simulation engine
+                # Dark casing outline [6, 78, 59, 200]
                 layers.append(pdk.Layer(
                     "PathLayer",
                     [{
-                        "path": green_corridor["waypoints"],
-                        "color": [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
-                        "name": f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                        "path":        green_corridor["waypoints"],
+                        "color":       [6, 78, 59, 200],
+                        "name":        f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']}",
+                        "type":        "Emergency Evacuation Corridor",
+                        "status":      green_corridor['route_status'],
+                        "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                        "hazard_info": " | Signal Preemption Engaged",
+                    }],
+                    id="human-recalc-bypass-casing",
+                    get_path="path",
+                    get_color="color",
+                    width_min_pixels=13,
+                    pickable=False,
+                    rounded=True
+                ))
+                # Clean emerald green line [16, 185, 129, 255]
+                layers.append(pdk.Layer(
+                    "PathLayer",
+                    [{
+                        "path":        green_corridor["waypoints"],
+                        "color":       [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
+                        "name":        f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']}",
+                        "type":        "Emergency Evacuation Corridor",
+                        "status":      green_corridor['route_status'],
+                        "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                        "hazard_info": " | Street-Snapped Centroid Corridor",
                     }],
                     id="human-recalc-bypass",
                     get_path="path",
                     get_color="color",
-                    width_min_pixels=10,
-                    pickable=True
+                    width_min_pixels=9,
+                    pickable=True,
+                    rounded=True
                 ))
 
                 # Destination Hospital Marker Pin
@@ -2092,10 +2226,14 @@ else:
                 layers.append(pdk.Layer(
                     "ScatterplotLayer",
                     [{
-                        "position": dest_pt,
-                        "color": [168, 85, 247, 240],
-                        "radius": 45,
-                        "name": f"DESTINATION HUB: {green_corridor['hospital_name']}"
+                        "position":    dest_pt,
+                        "color":       [168, 85, 247, 240],
+                        "radius":      45,
+                        "name":        f"DESTINATION HUB: {green_corridor['hospital_name']}",
+                        "type":        "Trauma & Emergency Care Hub",
+                        "status":      "OPERATIONAL — Green Wave Enabled",
+                        "depth":       "Level-1 Trauma & Surgical Facility",
+                        "hazard_info": "",
                     }],
                     id="ems-destination-hub-marker",
                     get_position="position",
@@ -2108,18 +2246,38 @@ else:
                 if mode == "DISASTER_FLOOD":
                     layers.append(pdk.Layer(
                         "PolygonLayer",
-                        [{"polygon": [[77.6745, 12.9252], [77.6750, 12.9270], [77.6780, 12.9268], [77.6775, 12.9248]], "elevation": 14, "color": [14, 116, 144, 160]}],
+                        [{
+                            "polygon":     [[77.6745, 12.9252], [77.6750, 12.9270], [77.6780, 12.9268], [77.6775, 12.9248]],
+                            "elevation":   14,
+                            "color":       [14, 116, 144, 160],
+                            "name":        "Bellandur Underpass Flood Breach Zone",
+                            "type":        "Stormwater Inundation / Waterlogging",
+                            "depth":       "1.2 meters",
+                            "status":      "CRITICAL — Vehicle Submersion Risk",
+                            "hazard_info": " | Low-Elevation Storm Runoff Breach",
+                        }],
                         id="flood-water-plane-man",
                         get_polygon="polygon",
                         get_elevation="elevation",
                         get_fill_color="color",
-                        extruded=True
+                        get_line_color=[56, 189, 248, 240],
+                        line_width_min_pixels=2,
+                        extruded=True,
+                        pickable=True,
                     ))
                 elif mode == "DISASTER_FIRE":
                     primary_access = get_building_access_lane(active_fire_bldg, fire_origin_c)
                     layers.append(pdk.Layer(
                         "PathLayer",
-                        [{"path": primary_access, "color": [239, 68, 68, 255], "name": f"THERMAL EXCLUSION ZONE: Severed Ingress Lane at {active_fire_bldg}"}],
+                        [{
+                            "path":        primary_access,
+                            "color":       [239, 68, 68, 255],
+                            "name":        f"THERMAL EXCLUSION ZONE: {active_fire_bldg}",
+                            "type":        "Thermal Severed Ingress Lane",
+                            "status":      "IMPASSABLE — Heat Radiant Zone",
+                            "depth":       "High Thermal Radiation",
+                            "hazard_info": " | First Responders Only",
+                        }],
                         id="fire-severed-lane-man",
                         get_path="path",
                         get_color="color",
@@ -2139,7 +2297,16 @@ else:
                     ]
                     layers.append(pdk.Layer(
                         "PolygonLayer",
-                        [{"polygon": flood_basin, "elevation": 14, "color": [14, 116, 144, 160]}],
+                        [{
+                            "polygon":     flood_basin,
+                            "elevation":   14,
+                            "color":       [14, 116, 144, 160],
+                            "name":        "Bellandur Underpass Flood Breach Zone",
+                            "type":        "Stormwater Inundation / Waterlogging",
+                            "depth":       "1.2 meters",
+                            "status":      "CRITICAL — Vehicle Submersion Risk",
+                            "hazard_info": " | Low-Elevation Storm Runoff Breach",
+                        }],
                         id="flood-water-plane",
                         get_polygon="polygon",
                         get_elevation="elevation",
@@ -2158,7 +2325,15 @@ else:
                     ]
                     layers.append(pdk.Layer(
                         "PathLayer",
-                        [{"path": underpass_blocked, "color": [239, 68, 68, 255], "name": "BLOCKED: Bellandur Underpass (Submerged 1.2m)"}],
+                        [{
+                            "path":        underpass_blocked,
+                            "color":       [239, 68, 68, 255],
+                            "name":        "BLOCKED: Bellandur Underpass Mainline",
+                            "type":        "Flooded Roadway Depression",
+                            "status":      "IMPASSABLE — Vehicle Submersion Risk",
+                            "depth":       "1.2 meters waterlogged",
+                            "hazard_info": " | Traffic Halted",
+                        }],
                         id="blocked-underpass",
                         get_path="path",
                         get_color="color",
@@ -2166,28 +2341,57 @@ else:
                         pickable=True
                     ))
 
+                    # Dark casing outline [6, 78, 59, 200]
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{
-                            "path": green_corridor["waypoints"],
-                            "color": [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
-                            "name": f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                            "path":        green_corridor["waypoints"],
+                            "color":       [6, 78, 59, 200],
+                            "name":        f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']}",
+                            "type":        "Elevated Flyover Green Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Signal Preemption Engaged",
+                        }],
+                        id="ems-flyover-bypass-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=11,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    # Clean emerald green line [16, 185, 129, 255]
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path":        green_corridor["waypoints"],
+                            "color":       [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
+                            "name":        f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']}",
+                            "type":        "Elevated Flyover Green Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Signal Preemption Engaged",
                         }],
                         id="ems-flyover-bypass",
                         get_path="path",
                         get_color="color",
                         width_min_pixels=7,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     dest_pt_auto = green_corridor["waypoints"][-1]
                     layers.append(pdk.Layer(
                         "ScatterplotLayer",
                         [{
-                            "position": dest_pt_auto,
-                            "color": [168, 85, 247, 240],
-                            "radius": 45,
-                            "name": f"DESTINATION: {green_corridor['hospital_name']}"
+                            "position":    dest_pt_auto,
+                            "color":       [168, 85, 247, 240],
+                            "radius":      45,
+                            "name":        f"DESTINATION: {green_corridor['hospital_name']}",
+                            "type":        "Trauma & Emergency Care Hub",
+                            "status":      "OPERATIONAL — Ingress Lane Clear",
+                            "depth":       "Level-1 Trauma & Surgical Facility",
+                            "hazard_info": "",
                         }],
                         id="ems-auto-destination-marker",
                         get_position="position",
@@ -2201,7 +2405,15 @@ else:
                     primary_access = get_building_access_lane(active_fire_bldg, fire_origin_c)
                     layers.append(pdk.Layer(
                         "PathLayer",
-                        [{"path": primary_access, "color": [239, 68, 68, 255], "name": f"THERMAL EXCLUSION ZONE: Severed Ingress Lane at {active_fire_bldg}"}],
+                        [{
+                            "path":        primary_access,
+                            "color":       [239, 68, 68, 255],
+                            "name":        f"THERMAL EXCLUSION ZONE: {active_fire_bldg}",
+                            "type":        "Thermal Severed Ingress Lane",
+                            "status":      "IMPASSABLE — Heat Radiant Zone",
+                            "depth":       "High Thermal Radiation",
+                            "hazard_info": " | First Responders Only",
+                        }],
                         id="fire-severed-lane-origin",
                         get_path="path",
                         get_color="color",
@@ -2212,7 +2424,15 @@ else:
                         secondary_access = get_building_access_lane(secondary_spread_bldg, nearest_bldg_c)
                         layers.append(pdk.Layer(
                             "PathLayer",
-                            [{"path": secondary_access, "color": [249, 115, 22, 255], "name": f"DOWNWIND SPREAD SECTOR: Thermal Risk Lane at {secondary_spread_bldg}"}],
+                            [{
+                                "path":        secondary_access,
+                                "color":       [249, 115, 22, 255],
+                                "name":        f"DOWNWIND SPREAD SECTOR: {secondary_spread_bldg}",
+                                "type":        "Thermal Risk Exposure Lane",
+                                "status":      "WARNING — Downwind Thermal Spread",
+                                "depth":       "Elevated Ambient Heat",
+                                "hazard_info": " | Evacuate Perimeter",
+                            }],
                             id="fire-severed-lane-secondary",
                             get_path="path",
                             get_color="color",
@@ -2231,7 +2451,15 @@ else:
                         ]
                         layers.append(pdk.Layer(
                             "PolygonLayer",
-                            [{"polygon": smoke_cone, "color": [100, 116, 139, 140]}],
+                            [{
+                                "polygon":     smoke_cone,
+                                "color":       [100, 116, 139, 140],
+                                "name":        "Atmospheric Smoke Plume (Downwind)",
+                                "type":        "Particulate & Thermal Inhalation Hazard",
+                                "status":      "EXPANDING — NE Wind 24 km/h",
+                                "depth":       "PM2.5 > 350 µg/m³",
+                                "hazard_info": " | Toxic Inhalation Danger",
+                            }],
                             id="smoke-cone-poly",
                             get_polygon="polygon",
                             get_fill_color="color",
@@ -2241,43 +2469,100 @@ else:
                     # Green fire-tender corridor from Sarjapur Base
                     fire_tender_route = [
                         [77.6655, 12.9208],
+                        [77.6685, 12.9222],
                         [77.6710, 12.9235],
+                        [77.6740, 12.9252],
                         [77.6770, 12.9265],
+                        [77.6800, 12.9258],
                         [77.6842, 12.9250]
                     ]
                     layers.append(pdk.Layer(
                         "PathLayer",
-                        [{"path": fire_tender_route, "color": [16, 185, 129, 255], "name": "FIRE-TENDER RAPID CORRIDOR (CLEAR OF PUBLIC TRAFFIC)"}],
+                        [{
+                            "path":        fire_tender_route,
+                            "color":       [6, 78, 59, 200],
+                            "name":        "FIRE-TENDER RAPID CORRIDOR",
+                            "type":        "Emergency Ingress Lane",
+                            "status":      "ACTIVE — Cleared for First Responders",
+                            "depth":       "High-Pressure Hydrant Transit",
+                            "hazard_info": " | Priority Wave",
+                        }],
+                        id="fire-tender-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=13,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path":        fire_tender_route,
+                            "color":       [16, 185, 129, 255],
+                            "name":        "FIRE-TENDER RAPID CORRIDOR",
+                            "type":        "Emergency Ingress Lane",
+                            "status":      "ACTIVE — Cleared for First Responders",
+                            "depth":       "High-Pressure Hydrant Transit",
+                            "hazard_info": " | Priority Wave",
+                        }],
                         id="fire-tender-corridor",
                         get_path="path",
                         get_color="color",
                         width_min_pixels=9,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     # Dynamic evacuation corridor avoiding thermal hazard
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{
-                            "path": green_corridor["waypoints"],
-                            "color": [16, 185, 129, 255],
-                            "name": f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                            "path":        green_corridor["waypoints"],
+                            "color":       [6, 78, 59, 200],
+                            "name":        f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']}",
+                            "type":        "Emergency Evacuation Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Preempted Signals",
+                        }],
+                        id="fire-recalc-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=12,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path":        green_corridor["waypoints"],
+                            "color":       [16, 185, 129, 255],
+                            "name":        f"DYNAMIC EMS DETOUR: {green_corridor['hospital_name']}",
+                            "type":        "Emergency Evacuation Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Preempted Signals",
                         }],
                         id="fire-recalc-corridor",
                         get_path="path",
                         get_color="color",
                         width_min_pixels=8,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
 
                     dest_pt_fire = green_corridor["waypoints"][-1]
                     layers.append(pdk.Layer(
                         "ScatterplotLayer",
                         [{
-                            "position": dest_pt_fire,
-                            "color": [168, 85, 247, 240],  # Purple
-                            "radius": 48,
-                            "name": f"DESTINATION HUB: {green_corridor['hospital_name']}"
+                            "position":    dest_pt_fire,
+                            "color":       [168, 85, 247, 240],  # Purple
+                            "radius":      48,
+                            "name":        f"DESTINATION HUB: {green_corridor['hospital_name']}",
+                            "type":        "Trauma & Emergency Care Hub",
+                            "status":      "OPERATIONAL — Trauma Priority Hub",
+                            "depth":       "Level-1 Trauma & Surgical Facility",
+                            "hazard_info": "",
                         }],
                         id="fire-dest-marker",
                         get_position="position",
@@ -2292,20 +2577,52 @@ else:
                         layers.append(pdk.Layer(
                             "PathLayer",
                             [{
-                                "path": green_corridor["waypoints"],
-                                "color": [16, 185, 129, 255],
-                                "name": "NORMAL ARTERIAL TRANSIT: All Corridors Open & Stable (M < 3.5 Minor)"
+                                "path":        green_corridor["waypoints"],
+                                "color":       [6, 78, 59, 200],
+                                "name":        "NORMAL ARTERIAL TRANSIT: All Corridors Open & Stable",
+                                "type":        "Normal Arterial Transit",
+                                "status":      "CLEAR — Minor Quake (M < 3.5)",
+                                "depth":       "0% Structural Degradation",
+                                "hazard_info": "",
+                            }],
+                            id="quake-clear-corridor-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=11,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path":        green_corridor["waypoints"],
+                                "color":       [16, 185, 129, 255],
+                                "name":        "NORMAL ARTERIAL TRANSIT: All Corridors Open & Stable",
+                                "type":        "Normal Arterial Transit",
+                                "status":      "CLEAR — Minor Quake (M < 3.5)",
+                                "depth":       "0% Structural Degradation",
+                                "hazard_info": "",
                             }],
                             id="quake-clear-corridor",
                             get_path="path",
                             get_color="color",
                             width_min_pixels=7,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
                     elif 3.5 <= current_quake_mag < 6.0:
                         # 3.5 <= M < 6.0: Moderate - Masonry crack warnings, flyover ramp closures due to spalling debris, bypass route engaged
                         debris_points = [
-                            {"coords": [77.6905, 12.9305], "color": [245, 158, 11, 240], "radius": 50, "name": f"MASONRY CRACK WARNING: Devarabisanahalli Flyover Ramp (M {current_quake_mag:.1f})"}
+                            {
+                                "coords":      [77.6905, 12.9305],
+                                "color":       [245, 158, 11, 240],
+                                "radius":      50,
+                                "name":        f"MASONRY CRACK WARNING: Devarabisanahalli Flyover Ramp (M {current_quake_mag:.1f})",
+                                "type":        "Structural Masonry Stress",
+                                "status":      "WARNING — Concrete Spalling Risk",
+                                "depth":       "Debris Barrier Engaged",
+                                "hazard_info": " | Ramp Closed",
+                            }
                         ]
                         layers.append(pdk.Layer(
                             "ScatterplotLayer",
@@ -2318,7 +2635,15 @@ else:
                         ))
                         layers.append(pdk.Layer(
                             "PathLayer",
-                            [{"path": [[77.6875, 12.9282], [77.6905, 12.9305]], "color": [239, 68, 68, 255], "name": "QUARANTINED: Devarabisanahalli Flyover Ramp (Spalling Debris)"}],
+                            [{
+                                "path":        [[77.6875, 12.9282], [77.6905, 12.9305]],
+                                "color":       [239, 68, 68, 255],
+                                "name":        "QUARANTINED: Devarabisanahalli Flyover Ramp",
+                                "type":        "Quarantined Ramp Segment",
+                                "status":      "IMPASSABLE — Spalling Debris",
+                                "depth":       "Masonry Fragments on Deck",
+                                "hazard_info": " | Traffic Diverted",
+                            }],
                             id="quake-blocked-lane",
                             get_path="path",
                             get_color="color",
@@ -2328,22 +2653,72 @@ else:
                         layers.append(pdk.Layer(
                             "PathLayer",
                             [{
-                                "path": green_corridor["waypoints"],
-                                "color": [16, 185, 129, 255],
-                                "name": f"ENGAGED BYPASS ROUTE: {green_corridor['hospital_name']} (At-Grade Arterial Bypass)"
+                                "path":        green_corridor["waypoints"],
+                                "color":       [6, 78, 59, 200],
+                                "name":        f"ENGAGED BYPASS ROUTE: {green_corridor['hospital_name']}",
+                                "type":        "At-Grade Ground Diverter",
+                                "status":      "ACTIVE — Surface Street Routing",
+                                "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                                "hazard_info": "",
+                            }],
+                            id="quake-bypass-route-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=12,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path":        green_corridor["waypoints"],
+                                "color":       [16, 185, 129, 255],
+                                "name":        f"ENGAGED BYPASS ROUTE: {green_corridor['hospital_name']}",
+                                "type":        "At-Grade Ground Diverter",
+                                "status":      "ACTIVE — Surface Street Routing",
+                                "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                                "hazard_info": "",
                             }],
                             id="quake-bypass-route",
                             get_path="path",
                             get_color="color",
                             width_min_pixels=8,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
                     else:
                         # M >= 6.0: Severe - Buildings along fault line turn deep collapse-red, multiple road segments blocked by structural rubble, evacuation falls back to perimeter residential bypass corridors
                         rubble_points = [
-                            {"coords": [77.6905, 12.9305], "color": [239, 68, 68, 255], "radius": 65, "name": "MAJOR STRUCTURAL COLLAPSE: Devarabisanahalli Ramp Rubble"},
-                            {"coords": [77.6765, 12.9262], "color": [239, 68, 68, 255], "radius": 60, "name": "FAULT LINE PAVEMENT FISSURE: Bellandur Underpass Rubble"},
-                            {"coords": [77.6842, 12.9250], "color": [239, 68, 68, 255], "radius": 55, "name": "COLLAPSED MASONRY DEBRIS: Ecospace Gate Arterial"}
+                            {
+                                "coords":      [77.6905, 12.9305],
+                                "color":       [239, 68, 68, 255],
+                                "radius":      65,
+                                "name":        "MAJOR STRUCTURAL COLLAPSE: Devarabisanahalli Ramp Rubble",
+                                "type":        "Structural Collapse Hazard",
+                                "status":      "CRITICAL — Full Deck Severance",
+                                "depth":       "Reinforced Concrete Rubble",
+                                "hazard_info": " | Impassable",
+                            },
+                            {
+                                "coords":      [77.6765, 12.9262],
+                                "color":       [239, 68, 68, 255],
+                                "radius":      60,
+                                "name":        "FAULT LINE PAVEMENT FISSURE: Bellandur Underpass Rubble",
+                                "type":        "Pavement Fault Rupture",
+                                "status":      "CRITICAL — Ground Discontinuity",
+                                "depth":       "0.8m Surface Fissure",
+                                "hazard_info": " | Impassable",
+                            },
+                            {
+                                "coords":      [77.6842, 12.9250],
+                                "color":       [239, 68, 68, 255],
+                                "radius":      55,
+                                "name":        "COLLAPSED MASONRY DEBRIS: Ecospace Gate Arterial",
+                                "type":        "Masonry Wall Collapse",
+                                "status":      "CRITICAL — Road Severed",
+                                "depth":       "Masonry Blockage",
+                                "hazard_info": " | Impassable",
+                            }
                         ]
                         layers.append(pdk.Layer(
                             "ScatterplotLayer",
@@ -2357,9 +2732,33 @@ else:
                         layers.append(pdk.Layer(
                             "PathLayer",
                             [
-                                {"path": [[77.6875, 12.9282], [77.6905, 12.9305]], "color": [239, 68, 68, 255], "name": "SEVERED: Devarabisanahalli Flyover Ramp (Structural Rubble)"},
-                                {"path": [[77.6710, 12.9235], [77.6765, 12.9262], [77.6800, 12.9256]], "color": [239, 68, 68, 255], "name": "SEVERED: Bellandur Underpass Corridor (Rubble Blockage)"},
-                                {"path": [[77.6800, 12.9256], [77.6842, 12.9250]], "color": [239, 68, 68, 255], "name": "SEVERED: Ecospace Arterial Approach"}
+                                {
+                                    "path":        [[77.6875, 12.9282], [77.6905, 12.9305]],
+                                    "color":       [239, 68, 68, 255],
+                                    "name":        "SEVERED: Devarabisanahalli Flyover Ramp",
+                                    "type":        "Severed Arterial Ramp",
+                                    "status":      "IMPASSABLE — Structural Rubble",
+                                    "depth":       "Concrete Slab Collapse",
+                                    "hazard_info": " | Quarantined",
+                                },
+                                {
+                                    "path":        [[77.6710, 12.9235], [77.6765, 12.9262], [77.6800, 12.9256]],
+                                    "color":       [239, 68, 68, 255],
+                                    "name":        "SEVERED: Bellandur Underpass Corridor",
+                                    "type":        "Severed Mainline Corridor",
+                                    "status":      "IMPASSABLE — Rubble Blockage",
+                                    "depth":       "Pavement Buckling",
+                                    "hazard_info": " | Quarantined",
+                                },
+                                {
+                                    "path":        [[77.6800, 12.9256], [77.6842, 12.9250]],
+                                    "color":       [239, 68, 68, 255],
+                                    "name":        "SEVERED: Ecospace Arterial Approach",
+                                    "type":        "Severed Access Road",
+                                    "status":      "IMPASSABLE — Rubble Debris",
+                                    "depth":       "Building Facade Rubble",
+                                    "hazard_info": " | Quarantined",
+                                }
                             ],
                             id="quake-multiple-blocked-lanes",
                             get_path="path",
@@ -2370,25 +2769,52 @@ else:
                         layers.append(pdk.Layer(
                             "PathLayer",
                             [{
-                                "path": green_corridor["waypoints"],
-                                "color": [16, 185, 129, 255],
-                                "name": "PERIMETER RESIDENTIAL EVACUATION CORRIDOR: Toward Kaikondrahalli Lake Grounds"
+                                "path":        green_corridor["waypoints"],
+                                "color":       [6, 78, 59, 200],
+                                "name":        "PERIMETER RESIDENTIAL EVACUATION CORRIDOR",
+                                "type":        "Emergency Evacuation Corridor",
+                                "status":      "OPEN — Kaikondrahalli Assembly Vector",
+                                "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                                "hazard_info": " | Collapse Quarantine Engaged",
+                            }],
+                            id="quake-perimeter-evac-route-casing",
+                            get_path="path",
+                            get_color="color",
+                            width_min_pixels=14,
+                            pickable=False,
+                            rounded=True
+                        ))
+                        layers.append(pdk.Layer(
+                            "PathLayer",
+                            [{
+                                "path":        green_corridor["waypoints"],
+                                "color":       [16, 185, 129, 255],
+                                "name":        "PERIMETER RESIDENTIAL EVACUATION CORRIDOR",
+                                "type":        "Emergency Evacuation Corridor",
+                                "status":      "OPEN — Kaikondrahalli Assembly Vector",
+                                "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                                "hazard_info": " | Collapse Quarantine Engaged",
                             }],
                             id="quake-perimeter-evac-route",
                             get_path="path",
                             get_color="color",
                             width_min_pixels=10,
-                            pickable=True
+                            pickable=True,
+                            rounded=True
                         ))
 
                     dest_pt_quake = green_corridor["waypoints"][-1]
                     layers.append(pdk.Layer(
                         "ScatterplotLayer",
                         [{
-                            "position": dest_pt_quake,
-                            "color": [168, 85, 247, 240],  # Purple
-                            "radius": 48,
-                            "name": f"DESTINATION HUB: {green_corridor['hospital_name']}"
+                            "position":    dest_pt_quake,
+                            "color":       [168, 85, 247, 240],  # Purple
+                            "radius":      48,
+                            "name":        f"DESTINATION HUB: {green_corridor['hospital_name']}",
+                            "type":        "Safe Assembly Ground / Medical Hub",
+                            "status":      "OPERATIONAL — Evacuation Staging Open",
+                            "depth":       "Triage Staging Active",
+                            "hazard_info": "",
                         }],
                         id="quake-dest-marker",
                         get_position="position",
@@ -2401,8 +2827,24 @@ else:
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [
-                            {"path": [[77.6710, 12.9235], [77.6765, 12.9262], [77.6842, 12.9250]], "color": [239, 68, 68, 255], "name": "DEADLOCK CHOKEPOINT (0.0 km/h Anomaly)"},
-                            {"path": [[77.6655, 12.9208], [77.6710, 12.9235], [77.6770, 12.9265], [77.6875, 12.9282]], "color": [16, 185, 129, 255], "name": "ADAPTIVE GREEN WAVE (120s Preemption Corridor)"}
+                            {
+                                "path":        [[77.6710, 12.9235], [77.6765, 12.9262], [77.6842, 12.9250]],
+                                "color":       [239, 68, 68, 255],
+                                "name":        "DEADLOCK CHOKEPOINT (0.0 km/h Anomaly)",
+                                "type":        "Gridlock Incident Vector",
+                                "status":      "DEADLOCK — Zero Flow Rate",
+                                "depth":       "Tailback 2.6 km",
+                                "hazard_info": " | Adaptive Diversion Active",
+                            },
+                            {
+                                "path":        [[77.6655, 12.9208], [77.6710, 12.9235], [77.6770, 12.9265], [77.6875, 12.9282]],
+                                "color":       [16, 185, 129, 255],
+                                "name":        "ADAPTIVE GREEN WAVE (120s Preemption Corridor)",
+                                "type":        "Preempted Arterial Corridor",
+                                "status":      "FREE FLOW — Dynamic Timing",
+                                "depth":       "Average Speed 48 km/h",
+                                "hazard_info": " | Coordinated Signal Cascade",
+                            }
                         ],
                         id="traffic-paths",
                         get_path="path",
@@ -2416,24 +2858,51 @@ else:
                     layers.append(pdk.Layer(
                         "PathLayer",
                         [{
-                            "path": green_corridor["waypoints"],
-                            "color": [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
-                            "name": f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']} (Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min | {green_corridor['route_status']})"
+                            "path":        green_corridor["waypoints"],
+                            "color":       [6, 78, 59, 200],
+                            "name":        f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']}",
+                            "type":        "Emergency Evacuation Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Preempted Signals",
+                        }],
+                        id="action-plan-ems-corridor-casing",
+                        get_path="path",
+                        get_color="color",
+                        width_min_pixels=14,
+                        pickable=False,
+                        rounded=True
+                    ))
+                    layers.append(pdk.Layer(
+                        "PathLayer",
+                        [{
+                            "path":        green_corridor["waypoints"],
+                            "color":       [16, 185, 129, 255] if not green_corridor["is_rerouted"] else [56, 189, 248, 255],
+                            "name":        f"DYNAMIC EMS CORRIDOR: {green_corridor['hospital_name']}",
+                            "type":        "Emergency Evacuation Corridor",
+                            "status":      green_corridor['route_status'],
+                            "depth":       f"Dist: {green_corridor['total_distance_km']} km | ETA: {green_corridor['eta_minutes']} min",
+                            "hazard_info": " | Street-Snapped Centroid Corridor",
                         }],
                         id="action-plan-ems-corridor",
                         get_path="path",
                         get_color="color",
                         width_min_pixels=10,
-                        pickable=True
+                        pickable=True,
+                        rounded=True
                     ))
                     dest_pt_plan = green_corridor["waypoints"][-1]
                     layers.append(pdk.Layer(
                         "ScatterplotLayer",
                         [{
-                            "position": dest_pt_plan,
-                            "color": [168, 85, 247, 240],
-                            "radius": 45,
-                            "name": f"DESTINATION HUB: {green_corridor['hospital_name']}"
+                            "position":    dest_pt_plan,
+                            "color":       [168, 85, 247, 240],
+                            "radius":      45,
+                            "name":        f"DESTINATION HUB: {green_corridor['hospital_name']}",
+                            "type":        "Trauma & Emergency Care Hub",
+                            "status":      "OPERATIONAL — Green Wave Enabled",
+                            "depth":       "Level-1 Trauma & Surgical Facility",
+                            "hazard_info": "",
                         }],
                         id="action-plan-ems-dest-marker",
                         get_position="position",
@@ -2473,9 +2942,9 @@ else:
                 else:  # Ecospace Gate 2
                     congestion_path = [
                         [77.6800, 12.9256],
-                        [77.6820, 12.9300],
-                        [77.6768, 12.9312],
-                        [77.6740, 12.9304],
+                        [77.6820, 12.9254],
+                        [77.6842, 12.9250],
+                        [77.6865, 12.9255],
                     ]
                     congestion_tooltip = (
                         "ECOSPACE GATE BOTTLENECK: Inflow 2,800 PCU/hr | "
@@ -2484,8 +2953,15 @@ else:
 
                 layers.append(pdk.Layer(
                     "PathLayer",
-                    [{"path": congestion_path, "color": [249, 115, 22, 220],
-                      "name": congestion_tooltip}],
+                    [{
+                        "path":        congestion_path,
+                        "color":       [249, 115, 22, 220],
+                        "name":        congestion_tooltip,
+                        "type":        "Traffic Congestion Spillover",
+                        "status":      "HEAVY CONGESTION",
+                        "depth":       "Tailback Queue",
+                        "hazard_info": " | Divert Recommended",
+                    }],
                     id="congestion-spillover-queue",
                     get_path="path",
                     get_color="color",
@@ -2575,7 +3051,22 @@ else:
             deck = pdk.Deck(
                 layers=layers,
                 initial_view_state=view_state,
-                tooltip={"html": "<div style='font-family:Inter; font-size:12px; color:#FFFFFF; background:#161F30; padding:6px 10px; border-radius:6px; border:1px solid #334155;'><b>{name}</b></div>"},
+                tooltip={
+                    "html": (
+                        "<b>{name}</b><br/>"
+                        "<span style='color: #94a3b8;'>Type:</span> {type}<br/>"
+                        "<span style='color: #38bdf8;'>Status:</span> {status}<br/>"
+                        "<span style='color: #f87171;'>Detail:</span> {depth}{hazard_info}"
+                    ),
+                    "style": {
+                        "backgroundColor": "#0f172a",
+                        "color": "#f8fafc",
+                        "fontSize": "12px",
+                        "borderRadius": "6px",
+                        "padding": "8px 12px",
+                        "border": "1px solid #334155",
+                    },
+                },
                 map_provider=None,
                 map_style=None,
             )

@@ -178,7 +178,7 @@ class MapRenderer:
         # over the raw satellite tiles without obscuring the imagery beneath.
         labels_layer = pdk.Layer(
             "TileLayer",
-            id="road-labels-overlay",
+            id="satellite-labels",
             data="https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
             min_zoom=0,
             max_zoom=19,
@@ -207,8 +207,12 @@ class MapRenderer:
                 name_str = " ".join(str(x) for x in raw_name) if isinstance(raw_name, list) else str(raw_name or "Road")
                 name_lower = name_str.lower()
                 osm_road_paths.append({
-                    "name":  name_str,
-                    "path":  coords,
+                    "name":        name_str,
+                    "path":        coords,
+                    "type":        "Road Network Corridor",
+                    "status":      "BLOCKED" if edge.get("is_blocked") else "CLEAR",
+                    "depth":       "Dense Asphalt Geometry",
+                    "hazard_info": " | Low-Elevation Risk" if edge.get("vulnerable_to_flood") else "",
                     # Colour: blocked=red, flood-vulnerable=amber,
                     # elevated/flyover=sky-blue, regular=muted slate
                     "color": (
@@ -230,7 +234,7 @@ class MapRenderer:
             get_width="width",
             width_min_pixels=1,
             width_max_pixels=7,
-            pickable=False,
+            pickable=True,
             rounded=True,
         )
         layers.append(osm_road_layer)
@@ -321,59 +325,82 @@ class MapRenderer:
             if b_type == "hospital" or "hospital" in b_name.lower() or "sakra" in b_name.lower():
                 color = [168, 85, 247, 230]
                 line_color = [216, 180, 254, 255]
+                b_type_label = "Critical Medical Node"
+                b_status_label = "OPERATIONAL — Trauma Priority Hub"
             elif b_type == "emergency_service":
                 color = [16, 185, 129, 230]
                 line_color = [52, 211, 153, 200]
+                b_type_label = "Emergency Response Base"
+                b_status_label = "DISPATCH READY"
             elif fire_active:
                 # Fire Engine Dynamics
                 if b_name == fire_origin_name:
                     # Primary fire origin: deep flaming crimson with active pulsing amber boundary
                     color = [239, 68, 68, 240]
                     line_color = [251, 146, 60, 255]
+                    b_type_label = "Commercial Tech Park (Fire Origin)"
+                    b_status_label = "CRITICAL — Active Thermal Hazard"
                 elif secondary_spread_active and b_name == secondary_spread_building:
                     # Secondary spread: amber-orange simulate downwind spread
                     color = [249, 115, 22, 220]
                     line_color = [251, 146, 60, 255]
+                    b_type_label = "Commercial Tech Park (Downwind Risk)"
+                    b_status_label = "WARNING — Downwind Thermal Exposure"
                 else:
                     # Non-affected tech towers: operational cyan/slate
                     color = [30, 41, 59, 180]
                     line_color = [51, 65, 85, 255]
+                    b_type_label = "Commercial Tech Park"
+                    b_status_label = "Nominal"
             elif seismic_magnitude > 0.0:
                 # Earthquake Richter Dynamics
+                b_type_label = "Commercial Tech Park" if b_type != "residential" else "Residential High-Rise"
                 if seismic_magnitude < 3.5:
                     # Minor (M < 3.5): 0% structural damage, all buildings stable cyan
                     color = [56, 189, 248, 180]
                     line_color = [125, 211, 252, 200]
+                    b_status_label = "Nominal — Stable"
                 elif 3.5 <= seismic_magnitude < 6.0:
                     # Moderate (3.5 <= M < 6.0): Masonry crack warnings on medium/high risk
                     if props.get("structural_risk") in ["high", "medium"]:
                         color = [245, 158, 11, 210]
                         line_color = [251, 191, 36, 255]
+                        b_status_label = "Structural Warning — Masonry Stress"
                     else:
                         color = [56, 189, 248, 180]
                         line_color = [125, 211, 252, 160]
+                        b_status_label = "Nominal — Resilient"
                 else:
                     # Severe (M >= 6.0): Buildings along fault line turn deep collapse-red [220, 38, 38, 240]
                     color = [220, 38, 38, 240]
                     line_color = [239, 68, 68, 255]
+                    b_status_label = "CRITICAL — Structural Collapse Hazard"
             else:
                 # Default Operational View
                 if b_type == "residential":
                     color = [100, 116, 139, 210]
                     line_color = [148, 163, 184, 140]
+                    b_type_label = "Residential High-Rise"
+                    b_status_label = "Nominal"
                 else:
                     color = [56, 189, 248, 200]
                     line_color = [125, 211, 252, 160]
+                    b_type_label = "Commercial Tech Park"
+                    b_status_label = "Nominal"
 
             if coords:
                 bldg_data.append({
-                    "name":     props.get("name", "Building"),
-                    "height":   height * 1.5,   # Exaggerate for 3D aesthetics
-                    "color":    color,
-                    "line_color": line_color,
-                    "polygon":  coords[0],
-                    "occupancy": props.get("occupancy", 1000),
-                    "elevation": props.get("elevation", 882.0),
+                    "name":        props.get("name", "Building"),
+                    "type":        b_type_label,
+                    "status":      b_status_label,
+                    "depth":       f"{int(props.get('occupancy', 1000))} occupants | Elevation {props.get('elevation', 882.0):.0f}m",
+                    "hazard_info": "",
+                    "height":      height * 1.5,   # Exaggerate for 3D aesthetics
+                    "color":       color,
+                    "line_color":  line_color,
+                    "polygon":     coords[0],
+                    "occupancy":   props.get("occupancy", 1000),
+                    "elevation":   props.get("elevation", 882.0),
                 })
 
         building_layer = pdk.Layer(
@@ -407,12 +434,15 @@ class MapRenderer:
                 [77.6710, 12.9230],
             ]
             flood_data = [{
-                "name":       f"Bellandur Flood Plane (Rainfall: {rainfall_mm:.0f}mm)",
-                "polygon":    flood_basin,
-                "elevation":  flood_elev_m,
+                "name":        "Bellandur Underpass Flood Breach Zone",
+                "type":        "Stormwater Inundation / Waterlogging",
+                "depth":       "1.2 meters",
+                "status":      "CRITICAL — Vehicle Submersion Risk",
+                "hazard_info": f" | Low-Elevation Storm Runoff Breach ({rainfall_mm:.0f}mm rainfall)",
+                "polygon":     flood_basin,
+                "elevation":   flood_elev_m,
                 # Layer 3 spec: semi-transparent cyan [14, 116, 144, 160]
-                "color":      [14, 116, 144, 160],
-                "depth_info": f"{((rainfall_mm - 30.0) * 0.75):.1f} cm waterlogged",
+                "color":       [14, 116, 144, 160],
             }]
             flood_layer = pdk.Layer(
                 "PolygonLayer",
@@ -436,12 +466,14 @@ class MapRenderer:
             coords = edge.get("path_coords", [])
             if coords:
                 road_paths.append({
-                    "name":   edge.get("name", "Road Link"),
-                    "path":   coords,
-                    "color":  edge.get("color", [148, 163, 184, 180]),
-                    "width":  8 if edge.get("is_blocked") else 4,
-                    "status": edge.get("status_text", "CLEAR"),
-                    "speed":  f"{edge.get('effective_speed_kmh', 40.0):.0f} km/h",
+                    "name":        edge.get("name", "Road Link"),
+                    "path":        coords,
+                    "color":       edge.get("color", [148, 163, 184, 180]),
+                    "width":       8 if edge.get("is_blocked") else 4,
+                    "type":        "Simulation Road Edge",
+                    "status":      edge.get("status_text", "CLEAR"),
+                    "depth":       f"Speed: {edge.get('effective_speed_kmh', 40.0):.0f} km/h",
+                    "hazard_info": " | Active Traffic Link",
                 })
 
         sim_road_layer = pdk.Layer(
@@ -472,11 +504,13 @@ class MapRenderer:
 
             # 6a — Dark contrast casing (outline / backing stroke)
             ems_casing_data = [{
-                "name":   route_label,
-                "path":   ems_path,
-                "color":  [6, 78, 59, 200],   # Deep forest green casing
-                "status": route_status,
-                "eta":    route_eta,
+                "name":        route_label,
+                "path":        ems_path,
+                "color":       [6, 78, 59, 200],   # Deep forest green casing
+                "type":        "Active EMS Corridor",
+                "status":      route_status,
+                "depth":       f"ETA: {route_eta}",
+                "hazard_info": " | Signal Preemption Engaged",
             }]
             ems_casing_layer = pdk.Layer(
                 "PathLayer",
@@ -494,11 +528,13 @@ class MapRenderer:
 
             # 6b — Vibrant emerald fill (primary visible stroke)
             ems_fill_data = [{
-                "name":   route_label,
-                "path":   ems_path,
-                "color":  [16, 185, 129, 255],  # Emerald green #10B981
-                "status": route_status,
-                "eta":    route_eta,
+                "name":        route_label,
+                "path":        ems_path,
+                "color":       [16, 185, 129, 255],  # Emerald green #10B981
+                "type":        "Active EMS Corridor",
+                "status":      route_status,
+                "depth":       f"ETA: {route_eta}",
+                "hazard_info": " | Green Wave Preempted",
             }]
             ems_fill_layer = pdk.Layer(
                 "PathLayer",
@@ -530,9 +566,13 @@ class MapRenderer:
             layers.append(pdk.Layer(
                 "PathLayer",
                 [{
-                    "name": evac_label,
-                    "path": evac_path,
-                    "color": [6, 78, 59, 200],
+                    "name":        evac_label,
+                    "path":        evac_path,
+                    "color":       [6, 78, 59, 200],
+                    "type":        "Safe Evacuation Corridor",
+                    "status":      "OPEN & PASSABLE",
+                    "depth":       "Pedestrian & Light Vehicle Transit",
+                    "hazard_info": "",
                 }],
                 id="evacuation-corridor-casing",
                 get_path="path",
@@ -548,9 +588,13 @@ class MapRenderer:
             layers.append(pdk.Layer(
                 "PathLayer",
                 [{
-                    "name": evac_label,
-                    "path": evac_path,
-                    "color": [16, 185, 129, 255],
+                    "name":        evac_label,
+                    "path":        evac_path,
+                    "color":       [16, 185, 129, 255],
+                    "type":        "Safe Evacuation Corridor",
+                    "status":      "OPEN & PASSABLE",
+                    "depth":       "Pedestrian & Light Vehicle Transit",
+                    "hazard_info": "",
                 }],
                 id="evacuation-corridor-fill",
                 get_path="path",
@@ -568,9 +612,13 @@ class MapRenderer:
         if fire_info and fire_info.get("fire_active") and fire_info.get("rings"):
             fire_data = [
                 {
-                    "name":    f"Fire Boundary ({ring.get('ring_name')})",
-                    "polygon": ring.get("polygon"),
-                    "color":   ring.get("color", [249, 115, 22, 180]),
+                    "name":        f"Fire Boundary ({ring.get('ring_name')})",
+                    "polygon":     ring.get("polygon"),
+                    "type":        "Thermal Hazard Perimeter",
+                    "status":      "ACTIVE SPREAD",
+                    "depth":       "Heat Radiation Radius",
+                    "hazard_info": " | Evacuate Area",
+                    "color":       ring.get("color", [249, 115, 22, 180]),
                 }
                 for ring in fire_info["rings"]
             ]
@@ -598,7 +646,10 @@ class MapRenderer:
                     "coordinates": [g.get("lon"), g.get("lat")],
                     "color":       [168, 85, 247, 240],   # Purple shelter
                     "radius":      55,
-                    "info":        f"Capacity: {g.get('current_count')}/{g.get('max_capacity')} Sheltered",
+                    "type":        "Safe Assembly Ground",
+                    "status":      "OPEN & SAFE",
+                    "depth":       f"Capacity: {g.get('current_count')}/{g.get('max_capacity')} Sheltered",
+                    "hazard_info": "",
                 })
 
         # Fixed anchors
@@ -608,14 +659,20 @@ class MapRenderer:
                 "coordinates": [77.6875, 12.9282],
                 "color":       [168, 85, 247, 240],   # Emergency Purple
                 "radius":      65,
-                "info":        "Level-1 Trauma & Emergency Care Hub",
+                "type":        "Trauma & Emergency Care Hub",
+                "status":      "OPERATIONAL — Trauma Priority Hub",
+                "depth":       "Level-1 Trauma & Surgical Facility",
+                "hazard_info": " | Priority Ingress",
             },
             {
                 "name":        "Iblur EMS Dispatch Base",
                 "coordinates": [77.6655, 12.9208],
                 "color":       [16, 185, 129, 255],
                 "radius":      50,
-                "info":        "Rapid Response Ambulance Station",
+                "type":        "Rapid Response Ambulance Station",
+                "status":      "DISPATCH READY",
+                "depth":       "Ambulance Staging Hub",
+                "hazard_info": "",
             },
         ])
 
@@ -642,11 +699,10 @@ class MapRenderer:
                     "coordinates": [sig.get("lon"), sig.get("lat")],
                     "color":       sig.get("color_rgb", [34, 197, 94]) + [255],
                     "radius":      32,
-                    "info":        (
-                        f"Mode: {sig.get('mode')} | "
-                        f"Green: {sig.get('green_duration_sec')}s | "
-                        f"Red: {sig.get('red_duration_sec')}s"
-                    ),
+                    "type":        "Adaptive Traffic Signal",
+                    "status":      f"Mode: {sig.get('mode', 'DYNAMIC')}",
+                    "depth":       f"Green: {sig.get('green_duration_sec', 60)}s | Red: {sig.get('red_duration_sec', 60)}s",
+                    "hazard_info": "",
                 }
                 for sig in signal_states
             ]
@@ -679,14 +735,19 @@ class MapRenderer:
 
         tooltip = {
             "html": (
-                "<div style='font-family:Inter,sans-serif; font-size:12px; "
-                "color:#F8FAFC; background:#1E293B; padding:8px; "
-                "border-radius:6px; border:1px solid #334155;'>"
                 "<b>{name}</b><br/>"
-                "<span style='color:#38BDF8;'>{status}</span> {info} {depth_info}"
-                "</div>"
+                "<span style='color: #94a3b8;'>Type:</span> {type}<br/>"
+                "<span style='color: #38bdf8;'>Status:</span> {status}<br/>"
+                "<span style='color: #f87171;'>Detail:</span> {depth}{hazard_info}"
             ),
-            "style": {"backgroundColor": "transparent", "color": "white"},
+            "style": {
+                "backgroundColor": "#0f172a",
+                "color": "#f8fafc",
+                "fontSize": "12px",
+                "borderRadius": "6px",
+                "padding": "8px 12px",
+                "border": "1px solid #334155",
+            },
         }
 
         # ─────────────────────────────────────────────────────────────────────
